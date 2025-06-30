@@ -7,11 +7,10 @@ public class InputController : MonoBehaviour
 {
     [Header("Input Action References")]
     [SerializeField] private InputActionAsset inputActions;
-
-    private void Awake()
-    {
-        SubscribeToEvents();
-    }
+    
+    [Header("Action References")]
+    private InputAction _moveAction;
+    private InputAction _lookAction;
 
     private void OnMovePerformed(InputAction.CallbackContext callbackContext)
     {
@@ -27,29 +26,28 @@ public class InputController : MonoBehaviour
         EventManager.OnLookPerformed(lookInput);
     }
 
-
     #region Initialization and Cleanup
     /// <summary> Initializes the input controller by subscribing to input events. </summary>
     private void SubscribeToEvents()
     {
-        inputActions.FindAction(Consts.MOVE_ACTION, throwIfNotFound: true).started += OnMovePerformed;
-        inputActions.FindAction(Consts.MOVE_ACTION, throwIfNotFound: true).performed += OnMovePerformed;
-        inputActions.FindAction(Consts.MOVE_ACTION, throwIfNotFound: true).canceled += OnMovePerformed;
+        _moveAction.started += OnMovePerformed;
+        _moveAction.performed += OnMovePerformed;
+        _moveAction.canceled += OnMovePerformed;
         
-        inputActions.FindAction(Consts.LOOK_ACTION, throwIfNotFound: true).started += OnLookPerformed;
-        inputActions.FindAction(Consts.LOOK_ACTION, throwIfNotFound: true).performed += OnLookPerformed;
-        inputActions.FindAction(Consts.LOOK_ACTION, throwIfNotFound: true).canceled += OnLookPerformed;
+        _lookAction.started += OnLookPerformed;
+        _lookAction.performed += OnLookPerformed;
+        _lookAction.canceled += OnLookPerformed;
     }
     
     private void UnsubscribeFromEvents()
     {
-        inputActions.FindAction(Consts.MOVE_ACTION, throwIfNotFound: true).started -= OnMovePerformed;
-        inputActions.FindAction(Consts.MOVE_ACTION, throwIfNotFound: true).performed -= OnMovePerformed;
-        inputActions.FindAction(Consts.MOVE_ACTION, throwIfNotFound: true).canceled -= OnMovePerformed;
+        _moveAction.started -= OnMovePerformed;
+        _moveAction.performed -= OnMovePerformed;
+        _moveAction.canceled -= OnMovePerformed;
         
-        inputActions.FindAction(Consts.LOOK_ACTION, throwIfNotFound: true).started -= OnLookPerformed;
-        inputActions.FindAction(Consts.LOOK_ACTION, throwIfNotFound: true).performed -= OnLookPerformed;
-        inputActions.FindAction(Consts.LOOK_ACTION, throwIfNotFound: true).canceled -= OnLookPerformed;
+        _lookAction.started -= OnLookPerformed;
+        _lookAction.performed -= OnLookPerformed;
+        _lookAction.canceled -= OnLookPerformed;
     }
     
     private void OnEnable()
@@ -57,11 +55,16 @@ public class InputController : MonoBehaviour
         if (inputActions != null)
         {
             inputActions.Enable();
+            
+            // Find the actions by their names defined in Consts.cs
+            _moveAction = inputActions.FindAction(Consts.MOVE_ACTION, throwIfNotFound: true);
+            _lookAction = inputActions.FindAction(Consts.LOOK_ACTION, throwIfNotFound: true);
         }
         else
         {
             Debug.LogWarning("InputActionAsset is not assigned in the InputController.");
         }
+        SubscribeToEvents();
     }
     private void OnDisable()
     {

@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Movement Settings")]
     [SerializeField] private float moveSpeed = 5f;
-    private Vector2 moveInput;
+    private Vector2 _moveInput;
 
     [Header("Rotation Settings")]
     [SerializeField] private float rotationSpeed = 720f;
@@ -29,16 +29,16 @@ public class PlayerMovement : MonoBehaviour
 
     private void HandleMove(Vector2 moveInput)
     {
-        this.moveInput = moveInput;
+        this._moveInput = moveInput;
     }
 
     private void MovePlayer()
     {
-        if (moveInput != Vector2.zero)
+        if (_moveInput != Vector2.zero)
         {
             // Calculate the movement direction based on input
             //Vector3 moveDirection = new Vector3(moveInput.x, 0, moveInput.y).normalized;
-            Vector3 moveDirection = transform.forward * moveInput.y + transform.right * moveInput.x;
+            Vector3 moveDirection = transform.forward * _moveInput.y + transform.right * _moveInput.x;
 
             // Move the player
             //transform.Translate(moveDirection * (moveSpeed * Time.fixedDeltaTime), Space.World);
