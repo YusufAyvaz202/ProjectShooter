@@ -19,6 +19,13 @@ public class InputController : MonoBehaviour
         Vector2 moveInput = callbackContext.ReadValue<Vector2>();
         EventManager.OnMovePerformed(moveInput);
     }
+    
+    private void OnLookPerformed(InputAction.CallbackContext callbackContext)
+    {
+        // Read the look input from the callback context and pass it to the event manager
+        Vector2 lookInput = callbackContext.ReadValue<Vector2>();
+        EventManager.OnLookPerformed(lookInput);
+    }
 
 
     #region Initialization and Cleanup
@@ -28,6 +35,10 @@ public class InputController : MonoBehaviour
         inputActions.FindAction(Consts.MOVE_ACTION, throwIfNotFound: true).started += OnMovePerformed;
         inputActions.FindAction(Consts.MOVE_ACTION, throwIfNotFound: true).performed += OnMovePerformed;
         inputActions.FindAction(Consts.MOVE_ACTION, throwIfNotFound: true).canceled += OnMovePerformed;
+        
+        inputActions.FindAction(Consts.LOOK_ACTION, throwIfNotFound: true).started += OnLookPerformed;
+        inputActions.FindAction(Consts.LOOK_ACTION, throwIfNotFound: true).performed += OnLookPerformed;
+        inputActions.FindAction(Consts.LOOK_ACTION, throwIfNotFound: true).canceled += OnLookPerformed;
     }
     
     private void UnsubscribeFromEvents()
@@ -35,6 +46,10 @@ public class InputController : MonoBehaviour
         inputActions.FindAction(Consts.MOVE_ACTION, throwIfNotFound: true).started -= OnMovePerformed;
         inputActions.FindAction(Consts.MOVE_ACTION, throwIfNotFound: true).performed -= OnMovePerformed;
         inputActions.FindAction(Consts.MOVE_ACTION, throwIfNotFound: true).canceled -= OnMovePerformed;
+        
+        inputActions.FindAction(Consts.LOOK_ACTION, throwIfNotFound: true).started -= OnLookPerformed;
+        inputActions.FindAction(Consts.LOOK_ACTION, throwIfNotFound: true).performed -= OnLookPerformed;
+        inputActions.FindAction(Consts.LOOK_ACTION, throwIfNotFound: true).canceled -= OnLookPerformed;
     }
     
     private void OnEnable()

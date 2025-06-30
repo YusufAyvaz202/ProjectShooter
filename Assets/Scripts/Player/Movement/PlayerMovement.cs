@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Rotation Settings")]
     [SerializeField] private float rotationSpeed = 720f;
+    private Vector2 _rotationInput;
 
     private void Awake()
     {
@@ -23,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         MovePlayer();
+        Look();
     }
 
     private void HandleMove(Vector2 moveInput)
@@ -35,11 +37,27 @@ public class PlayerMovement : MonoBehaviour
         if (moveInput != Vector2.zero)
         {
             // Calculate the movement direction based on input
-            Vector3 moveDirection = new Vector3(moveInput.x, 0, moveInput.y).normalized;
+            //Vector3 moveDirection = new Vector3(moveInput.x, 0, moveInput.y).normalized;
+            Vector3 moveDirection = transform.forward * moveInput.y + transform.right * moveInput.x;
 
             // Move the player
             //transform.Translate(moveDirection * (moveSpeed * Time.fixedDeltaTime), Space.World);
             _rigidbody.MovePosition(transform.position + moveDirection * (Time.fixedDeltaTime * moveSpeed));
+        }
+    }
+    
+    private void HandleRotation(Vector2 rotationInput)
+    {
+        _rotationInput = rotationInput;
+    }
+
+    private void Look()
+    {
+        if (_rotationInput != Vector2.zero)
+        {
+            // Calculate the rotation based on input
+            Quaternion targetRotation = Quaternion.Euler(0, _rotationInput.x * rotationSpeed * Time.fixedDeltaTime, 0);
+            _rigidbody.MoveRotation(_rigidbody.rotation * targetRotation);
         }
     }
 
@@ -48,11 +66,13 @@ public class PlayerMovement : MonoBehaviour
     private void SubscribeToEvents()
     {
         EventManager.OnMovePerformed += HandleMove;
+        EventManager.OnLookPerformed += HandleRotation; // Assuming you want to handle look input as well
     }
 
     private void UnsubscribeFromEvents()
     {
         EventManager.OnMovePerformed -= HandleMove;
+        EventManager.OnLookPerformed -= HandleRotation;
     }
 
     private void OnDisable()
