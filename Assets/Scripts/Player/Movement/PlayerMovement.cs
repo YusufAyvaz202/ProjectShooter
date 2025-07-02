@@ -6,17 +6,17 @@ namespace Player.Movement
     [RequireComponent(typeof(Rigidbody))]
     public class PlayerMovement : MonoBehaviour
     {
-        [Header("Rigidbody Settings")] private Rigidbody _rigidbody;
+        [Header("Rigidbody Settings")]
+        private Rigidbody _rigidbody;
 
-        [Header("Movement Settings")] [SerializeField]
-        private float moveSpeed = 5f;
-
+        [Header("Movement Settings")]
+        [SerializeField] private float moveSpeed = 5f;
         [SerializeField] private float jumpSpeed = 5f;
         private Vector2 _moveInput;
         private bool _isGrounded = true;
 
-        [Header("Rotation Settings")] [SerializeField]
-        private float rotationSpeed = 720f;
+        [Header("Rotation Settings")]
+        [SerializeField] private float rotationSpeed = 720f;
 
         private Vector2 _rotationInput;
 

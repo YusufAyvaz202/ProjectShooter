@@ -8,5 +8,6 @@ namespace Managers
         public static Action<Vector2> OnMovePerformed;
         public static Action<Vector2> OnLookPerformed;
         public static Action OnJumpPerformed;
+        public static Action OnAttackPerformed;
     }
 }

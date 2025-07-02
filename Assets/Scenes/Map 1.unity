@@ -193,6 +193,9 @@ PrefabInstance:
       addedObject: {fileID: 350367060}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 41e95d1eb77dda34f9c7586648aa49e9, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 350367063}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 41e95d1eb77dda34f9c7586648aa49e9, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 350367061}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 41e95d1eb77dda34f9c7586648aa49e9, type: 3}
       insertIndex: -1
@@ -710,6 +713,19 @@ CapsuleCollider:
   m_Height: 1.45
   m_Direction: 1
   m_Center: {x: 0, y: 0.61, z: 0}
+--- !u!114 &350367063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 350367059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3c51d859aaa4d64bf864854c690fbf2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BaseGun: {fileID: 1952032966}
 --- !u!1 &405276550
 GameObject:
   m_ObjectHideFlags: 0
@@ -1706,6 +1722,50 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d4cb4a3c41ba2754fb7ba0f9a7789d06, type: 3}
+--- !u!1 &1952032964
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1952032965}
+  - component: {fileID: 1952032966}
+  m_Layer: 0
+  m_Name: Pistol
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1952032965
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1952032964}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1952032966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1952032964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe45935af66844c180add395b8600f59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2088527461
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1773,3 +1833,4 @@ SceneRoots:
   - {fileID: 29998596}
   - {fileID: 405276551}
   - {fileID: 1134207681}
+  - {fileID: 1952032965}
