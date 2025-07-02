@@ -1,84 +1,109 @@
 using Managers;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody))]
-public class PlayerMovement : MonoBehaviour
+namespace Player.Movement
 {
-    [Header("Rigidbody Settings")]
-    private Rigidbody _rigidbody;
-
-    [Header("Movement Settings")]
-    [SerializeField] private float moveSpeed = 5f;
-    private Vector2 _moveInput;
-
-    [Header("Rotation Settings")]
-    [SerializeField] private float rotationSpeed = 720f;
-    private Vector2 _rotationInput;
-
-    private void Awake()
+    [RequireComponent(typeof(Rigidbody))]
+    public class PlayerMovement : MonoBehaviour
     {
-        _rigidbody = GetComponent<Rigidbody>();
-        SubscribeToEvents();
-    }
+        [Header("Rigidbody Settings")] private Rigidbody _rigidbody;
 
-    void FixedUpdate()
-    {
-        MovePlayer();
-        Look();
-    }
+        [Header("Movement Settings")] [SerializeField]
+        private float moveSpeed = 5f;
 
-    private void HandleMove(Vector2 moveInput)
-    {
-        this._moveInput = moveInput;
-    }
+        [SerializeField] private float jumpSpeed = 5f;
+        private Vector2 _moveInput;
+        private bool _isGrounded = true;
 
-    private void MovePlayer()
-    {
-        if (_moveInput != Vector2.zero)
+        [Header("Rotation Settings")] [SerializeField]
+        private float rotationSpeed = 720f;
+
+        private Vector2 _rotationInput;
+
+        private void Awake()
         {
-            // Calculate the movement direction based on input
-            //Vector3 moveDirection = new Vector3(moveInput.x, 0, moveInput.y).normalized;
-            Vector3 moveDirection = transform.forward * _moveInput.y + transform.right * _moveInput.x;
-
-            // Move the player
-            //transform.Translate(moveDirection * (moveSpeed * Time.fixedDeltaTime), Space.World);
-            _rigidbody.MovePosition(transform.position + moveDirection * (Time.fixedDeltaTime * moveSpeed));
+            _rigidbody = GetComponent<Rigidbody>();
+            SubscribeToEvents();
         }
-    }
-    
-    private void HandleRotation(Vector2 rotationInput)
-    {
-        _rotationInput = rotationInput;
-    }
 
-    private void Look()
-    {
-        if (_rotationInput != Vector2.zero)
+        void FixedUpdate()
         {
-            // Calculate the rotation based on input
-            Quaternion targetRotation = Quaternion.Euler(0, _rotationInput.x * rotationSpeed * Time.fixedDeltaTime, 0);
-            _rigidbody.MoveRotation(_rigidbody.rotation * targetRotation);
+            MovePlayer();
+            RotationPlayer();
         }
+
+        private void HandleMove(Vector2 moveInput)
+        {
+            this._moveInput = moveInput;
+        }
+
+        private void MovePlayer()
+        {
+            if (_moveInput != Vector2.zero)
+            {
+                // Calculate the movement direction based on input
+                //Vector3 moveDirection = new Vector3(moveInput.x, 0, moveInput.y).normalized;
+                Vector3 moveDirection = transform.forward * _moveInput.y + transform.right * _moveInput.x;
+
+                // Move the player
+                //transform.Translate(moveDirection * (moveSpeed * Time.fixedDeltaTime), Space.World);
+                _rigidbody.MovePosition(transform.position + moveDirection * (Time.fixedDeltaTime * moveSpeed));
+            }
+        }
+
+        private void HandleRotation(Vector2 rotationInput)
+        {
+            _rotationInput = rotationInput;
+        }
+
+        private void RotationPlayer()
+        {
+            if (_rotationInput != Vector2.zero)
+            {
+                // Calculate the rotation based on input
+                Quaternion targetRotation = Quaternion.Euler(0, _rotationInput.x * rotationSpeed * Time.fixedDeltaTime, 0);
+                _rigidbody.MoveRotation(_rigidbody.rotation * targetRotation);
+            }
+        }
+
+        private void HandleJump()
+        {
+            if (_isGrounded)
+            {
+                _isGrounded = false;
+                _rigidbody.AddForce(new Vector3(0, jumpSpeed, 0), ForceMode.Impulse);
+            }
+        }
+
+        private void OnCollisionEnter(Collision other)
+        {
+            if (other.gameObject.CompareTag("Ground"))
+            {
+                _isGrounded = true;
+            }
+        }
+
+        #region Initialization and Cleanup
+
+        private void SubscribeToEvents()
+        {
+            EventManager.OnMovePerformed += HandleMove;
+            EventManager.OnLookPerformed += HandleRotation; // Assuming you want to handle look input as well
+            EventManager.OnJumpPerformed += HandleJump;
+        }
+
+        private void UnsubscribeFromEvents()
+        {
+            EventManager.OnMovePerformed -= HandleMove;
+            EventManager.OnLookPerformed -= HandleRotation;
+            EventManager.OnJumpPerformed -= HandleJump;
+        }
+
+        private void OnDisable()
+        {
+            UnsubscribeFromEvents();
+        }
+
+        #endregion
     }
-
-    #region Initialization and Cleanup
-
-    private void SubscribeToEvents()
-    {
-        EventManager.OnMovePerformed += HandleMove;
-        EventManager.OnLookPerformed += HandleRotation; // Assuming you want to handle look input as well
-    }
-
-    private void UnsubscribeFromEvents()
-    {
-        EventManager.OnMovePerformed -= HandleMove;
-        EventManager.OnLookPerformed -= HandleRotation;
-    }
-
-    private void OnDisable()
-    {
-        UnsubscribeFromEvents();
-    }
-
-    #endregion
 }
