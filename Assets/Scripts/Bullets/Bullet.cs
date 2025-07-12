@@ -7,13 +7,9 @@ namespace Bullets
     [RequireComponent(typeof(Rigidbody))]
     public class Bullet : MonoBehaviour, IPoolabe
     {
+        [Header("Bullet Settings")]
         [SerializeField] private float bulletSpeed;
         private Rigidbody _rigidbody;
-
-        private void OnEnable()
-        {
-            _rigidbody = GetComponent<Rigidbody>();
-        }
 
         private void FixedUpdate()
         {
@@ -24,8 +20,8 @@ namespace Bullets
         {
             yield return new WaitForSeconds(3f);
             EventManager.OnDeSpawn(this);
-        } 
-        
+        }
+
         public void Spawn()
         {
             StartCoroutine(LifeTimer());
@@ -34,5 +30,14 @@ namespace Bullets
         {
             
         }
+
+        #region Initialize & Cleanup
+
+        private void OnEnable()
+        {
+            _rigidbody = GetComponent<Rigidbody>();
+        }
+
+        #endregion
     }
 }

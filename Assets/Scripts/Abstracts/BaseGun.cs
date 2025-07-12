@@ -1,5 +1,4 @@
-﻿using System;
-using Bullets;
+﻿using Bullets;
 using Interfaces;
 using Managers;
 using Misc;
@@ -10,10 +9,11 @@ namespace Abstracts
 {
     public abstract class BaseGun : MonoBehaviour, IAttackType
     {
-        protected GunType gunType;
-        private ObjectPool<Bullet> _objectPool;
-        [SerializeField] private Bullet bulletPrefab;
+        [Header("Gun Properties")]
         [SerializeField] private Transform bulletSpawnTransform;
+        [SerializeField] private Bullet bulletPrefab;
+        private ObjectPool<Bullet> _objectPool;
+        protected GunType gunType;
 
         public virtual void Attack()
         {

@@ -45,7 +45,7 @@ namespace Controllers
         {
             EventManager.OnAttackPerformed();
         }
-        
+
         #endregion
 
         #region Initialization and Cleanup
