@@ -1,6 +1,6 @@
 ﻿namespace Interfaces
 {
-    public interface AttackType
+    public interface IAttackType
     {
         void Attack();
     }

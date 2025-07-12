@@ -1,4 +1,5 @@
 ﻿using System;
+using Bullets;
 using UnityEngine;
 namespace Managers
 {
@@ -9,5 +10,7 @@ namespace Managers
         public static Action<Vector2> OnLookPerformed;
         public static Action OnJumpPerformed;
         public static Action OnAttackPerformed;
+
+        public static Action<Bullet> OnDeSpawn;
     }
 }

@@ -1,6 +1,4 @@
 ﻿using Abstracts;
-using UnityEngine;
-
 namespace Guns
 {
     public class Pistol : BaseGun
@@ -8,7 +6,7 @@ namespace Guns
         public override void Attack()
         {
             base.Attack();
-            Debug.Log("Pistol Attack");
+            //Instantiate(bulletPrefab, bulletSpawnTransform.position, bulletSpawnTransform.rotation);
         }
     }
 }
