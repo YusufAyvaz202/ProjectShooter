@@ -203,6 +203,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 41e95d1eb77dda34f9c7586648aa49e9, type: 3}
       insertIndex: -1
       addedObject: {fileID: 350367062}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 41e95d1eb77dda34f9c7586648aa49e9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 350367064}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 41e95d1eb77dda34f9c7586648aa49e9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 350367065}
     - targetCorrespondingSourceObject: {fileID: 3327415615574490268, guid: 41e95d1eb77dda34f9c7586648aa49e9, type: 3}
       insertIndex: -1
       addedObject: {fileID: 29998600}
@@ -234,8 +240,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe45935af66844c180add395b8600f59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: -2018474008162336223, guid: 3ad16c297ce14e448a0542020a666ec5, type: 3}
   bulletSpawnTransform: {fileID: 1531106917}
+  bulletPrefab: {fileID: -2018474008162336223, guid: 3ad16c297ce14e448a0542020a666ec5, type: 3}
 --- !u!4 &57921693 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5f29ff665229008459ace4c4cf63f344, type: 3}
@@ -756,6 +762,41 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BaseGun: {fileID: 29998600}
+--- !u!95 &350367064
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 350367059}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5019ed9f0f7bad14a9d474b9fff25bfc, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &350367065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 350367059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d41fbed35a34a5c86cf59301ae65b70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 350367064}
 --- !u!1 &405276550
 GameObject:
   m_ObjectHideFlags: 0

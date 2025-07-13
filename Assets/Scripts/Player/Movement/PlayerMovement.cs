@@ -49,6 +49,8 @@ namespace Player.Movement
                 //transform.Translate(moveDirection * (moveSpeed * Time.fixedDeltaTime), Space.World);
                 _rigidbody.MovePosition(transform.position + moveDirection * (Time.fixedDeltaTime * moveSpeed));
             }
+
+            EventManager.PlayerMoveAnimationParameterChanged(Mathf.Abs(_moveInput.x) + Mathf.Abs(_moveInput.y));
         }
 
         private void HandleRotation(Vector2 rotationInput)
