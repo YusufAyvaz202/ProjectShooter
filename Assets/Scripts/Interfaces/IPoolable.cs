@@ -1,6 +1,6 @@
 ﻿namespace Interfaces
 {
-    public interface IPoolabe
+    public interface IPoolable
     {
         void Spawn();
         void Despawn();

@@ -10,7 +10,7 @@ namespace Player.Animations
 
         private void ChangeMoveAnimationParameter(float speed)
         {
-            _animator.SetFloat(Consts.ANIMATIONS_SPEED, speed);
+            _animator.SetFloat(Consts.ANIMATIONS_MOVE_SPEED, speed);
         }
 
         #region Initialize & Cleanup

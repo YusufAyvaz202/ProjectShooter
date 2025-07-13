@@ -30,7 +30,7 @@ namespace Object_Pooling
             T obj = objects.Count == 0 ? Object.Instantiate(prefab, parent) : objects.Dequeue();
             obj.gameObject.SetActive(true);
 
-            if (obj is IPoolabe poolable)
+            if (obj is IPoolable poolable)
             {
                 poolable.Spawn();
             }
@@ -41,7 +41,7 @@ namespace Object_Pooling
         // If object is done return that object to the pool.
         public void ReturnToPool(T obj)
         {
-            if (obj is IPoolabe poolable)
+            if (obj is IPoolable poolable)
             {
                 poolable.Despawn();
             }

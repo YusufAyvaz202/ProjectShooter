@@ -9,7 +9,7 @@
         public const string ATTACK_ACTION = "Attack";
         
         // Players Animation string
-        public const string ANIMATIONS_SPEED = "MoveSpeed";
+        public const string ANIMATIONS_MOVE_SPEED = "MoveSpeed";
         
     }
 }
