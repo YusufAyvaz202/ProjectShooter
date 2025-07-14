@@ -756,7 +756,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3c51d859aaa4d64bf864854c690fbf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BaseGun: {fileID: 29998600}
+  _currentGun: {fileID: 0}
 --- !u!95 &350367064
 Animator:
   serializedVersion: 7
@@ -1273,7 +1273,7 @@ GameObject:
   m_Component:
   - component: {fileID: 706786801}
   m_Layer: 0
-  m_Name: Object Pool
+  m_Name: Enemy Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

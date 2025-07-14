@@ -1,5 +1,4 @@
-﻿using System;
-using Abstracts;
+﻿using Abstracts;
 using Managers;
 using UnityEngine;
 namespace Player.Movement
@@ -7,12 +6,11 @@ namespace Player.Movement
     public class PlayerAttack : MonoBehaviour
     {
         [Header("Attack Settings")]
-        public BaseGun BaseGun;
+        public BaseGun _currentGun;
 
         private void Attack()
         {
-            Debug.Log("Attack.");
-            BaseGun.Attack();
+            _currentGun.Attack();
         }
 
         #region Initialize & Cleanup

@@ -29,7 +29,7 @@ namespace Abstracts
 
         public void ThrowGun()
         {
-            // implement throwing a car.
+            // implement throwing a gun.
         }
 
         #region Initlalize & CleanUp
