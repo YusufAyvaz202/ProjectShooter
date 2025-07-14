@@ -28,7 +28,7 @@ namespace Abstracts
 
         public void Spawn()
         {
-            throw new System.NotImplementedException();
+            //throw new System.NotImplementedException();
         }
         public void Despawn()
         {

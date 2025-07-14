@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b66ff6ff44e4cb4beb2199352ae2c60, type: 3}
+  m_Name: Skeleton_Mage Pool Data
+  m_EditorClassIdentifier: 
+  baseEnemyPrefab: {fileID: 5686057147926549643, guid: f5b4333b8a6362843adf529d3561ff61, type: 3}
+  enemyType: 0
+  initialSize: 10
