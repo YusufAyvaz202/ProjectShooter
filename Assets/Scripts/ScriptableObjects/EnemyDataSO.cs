@@ -7,6 +7,8 @@ namespace ScriptableObjects
     {
         public float health;
         public float damage;
+        public float attackRange;
+        public float attackCooldown;
         public EnemyType enemyType;
     }
 }
