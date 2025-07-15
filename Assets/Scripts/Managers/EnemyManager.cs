@@ -14,12 +14,13 @@ namespace Managers
         private Dictionary<EnemyType, ObjectPool<BaseEnemy>> enemyPools;
 
         [Header("Spawn Settings")]
+        [SerializeField] private float spawnRadius = 50f;
         private readonly float spawnInterval = 1f;
         private readonly bool isSpawning = true;
 
         private void SpawnEnemy(EnemyType type)
         {
-            Vector2 spawnPosition = Random.insideUnitCircle * 25f;
+            Vector2 spawnPosition = Random.insideUnitCircle * spawnRadius;
             if (!enemyPools.TryGetValue(type, out var pool))
             {
                 Debug.LogError($"No pool found for enemy type {type}");

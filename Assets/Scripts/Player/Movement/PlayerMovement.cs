@@ -8,20 +8,20 @@ namespace Player.Movement
     {
         [Header("Rigidbody Settings")]
         private Rigidbody _rigidbody;
-
+        
         [Header("Movement Settings")]
         [SerializeField] private float moveSpeed = 5f;
         [SerializeField] private float jumpSpeed = 5f;
-        private Vector2 _moveInput;
         private bool _isGrounded = true;
+        private Vector2 _moveInput;
 
         [Header("Rotation Settings")]
         [SerializeField] private float rotationSpeed = 720f;
-
         private Vector2 _rotationInput;
 
         private void Awake()
         {
+            Cursor.lockState = CursorLockMode.Locked;
             _rigidbody = GetComponent<Rigidbody>();
             SubscribeToEvents();
         }
