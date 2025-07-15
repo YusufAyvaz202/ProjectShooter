@@ -176,7 +176,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5255629979335004940}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 72ece51f2901e7445ab60da3685d6b5f, type: 3}
   m_Name: 
@@ -273,12 +273,6 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 41e95d1eb77dda34f9c7586648aa49e9, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8695042046375428104}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 41e95d1eb77dda34f9c7586648aa49e9, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 6212221765590288724}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 41e95d1eb77dda34f9c7586648aa49e9, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 2019105875168810704}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 41e95d1eb77dda34f9c7586648aa49e9, type: 3}
       insertIndex: -1
@@ -286,6 +280,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 41e95d1eb77dda34f9c7586648aa49e9, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5445844548449056951}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 41e95d1eb77dda34f9c7586648aa49e9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8695042046375428104}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 41e95d1eb77dda34f9c7586648aa49e9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6212221765590288724}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 41e95d1eb77dda34f9c7586648aa49e9, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1233590932992382764}
@@ -317,34 +317,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 41e95d1eb77dda34f9c7586648aa49e9, type: 3}
   m_PrefabInstance: {fileID: 3144875889678890500}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8695042046375428104
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2838884204086627157}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bee66196da98811408a26f94a8edd5c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 10
-  jumpSpeed: 5
-  rotationSpeed: 12
---- !u!114 &6212221765590288724
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2838884204086627157}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3c51d859aaa4d64bf864854c690fbf2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _currentGun: {fileID: 7610030209342636687}
 --- !u!54 &2019105875168810704
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -370,7 +342,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!136 &7093442972415451903
 CapsuleCollider:
@@ -417,6 +389,34 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8695042046375428104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2838884204086627157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bee66196da98811408a26f94a8edd5c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 10
+  jumpSpeed: 5
+  rotationSpeed: 12
+--- !u!114 &6212221765590288724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2838884204086627157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3c51d859aaa4d64bf864854c690fbf2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _currentGun: {fileID: 7610030209342636687}
 --- !u!114 &1233590932992382764
 MonoBehaviour:
   m_ObjectHideFlags: 0

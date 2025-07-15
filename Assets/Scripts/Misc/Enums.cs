@@ -12,6 +12,6 @@
         Skeleton_Mage = 0,
         Skeleton_Minion = 1,
         Skeleton_Rogue = 2,
-        Skeleton_Warrior = 2,
+        Skeleton_Warrior = 3,
     }
 }

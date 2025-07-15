@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Abstracts
 {
-    public abstract class BaseGun : MonoBehaviour, IAttackType
+    public abstract class BaseGun : MonoBehaviour, IAttacker
     {
         [Header("Gun Properties")]
         [SerializeField] private Transform bulletSpawnTransform;

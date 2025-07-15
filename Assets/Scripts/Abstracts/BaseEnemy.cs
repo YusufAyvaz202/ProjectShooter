@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.AI;
 namespace Abstracts
 {
-    public abstract class BaseEnemy : MonoBehaviour, IAttackType, IPoolable
+    public abstract class BaseEnemy : MonoBehaviour, IAttacker, IPoolable
     {
         [Header("Enemy Settings")]
         [SerializeField] private EnemyDataSO myEnemyData;
@@ -20,6 +20,7 @@ namespace Abstracts
         private Transform _targetTransform;
         private Vector3 _destination;
         private float _attackRange;
+        private readonly float _minMoveSensitivity = 1f;
         private float _attackCooldown;
 
         public void TakeDamage(float damage)
@@ -33,20 +34,22 @@ namespace Abstracts
 
         private void Update()
         {
+            MoveToTarget();
+        }
+        
+        // Moves the enemy towards the target player.
+        private void MoveToTarget()
+        {
             if (_navMeshAgent == null || _targetTransform == null) return;
-            
+
             // Update the destination to the target's position if it has changed
             _destination = _targetTransform.position;
-            if (Vector3.Distance(transform.position, _destination) > 1f)
+            if (Vector3.Distance(transform.position, _destination) > _minMoveSensitivity)
             {
                 _navMeshAgent.SetDestination(_targetTransform.position);
             }
 
-            // Check if the enemy is within attack range
-            bool isInRange = Vector3.Distance(transform.position, _targetTransform.position) <= _attackRange;
-            _navMeshAgent.isStopped = isInRange;
-
-            if (isInRange)
+            if (_navMeshAgent.isStopped)
             {
                 Attack();
             }
@@ -83,6 +86,7 @@ namespace Abstracts
 
             _navMeshAgent = GetComponent<NavMeshAgent>();
             _targetTransform = FindAnyObjectByType<PlayerMovement>().GetComponent<Transform>();
+            _navMeshAgent.stoppingDistance = _attackRange;
         }
 
         #endregion
