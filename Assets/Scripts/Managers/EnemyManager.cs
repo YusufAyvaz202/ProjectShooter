@@ -5,6 +5,7 @@ using Misc;
 using Object_Pooling;
 using ScriptableObjects;
 using UnityEngine;
+using Random = UnityEngine.Random;
 namespace Managers
 {
     public class EnemyManager : MonoBehaviour
@@ -42,11 +43,25 @@ namespace Managers
                 yield return new WaitForSeconds(spawnInterval);
             }
         }
+        
+        private void DeSpawnEnemy(BaseEnemy enemy)
+        {
+            if (enemyPools.TryGetValue(enemy.enemyType, out var pool))
+            {
+                pool.ReturnToPool(enemy);
+            }
+            else
+            {
+                Debug.LogError($"No pool found for enemy type {enemy.enemyType}");
+            }
+        }
 
         #region Initalize & Cleanup
 
         private void OnEnable()
         {
+            EventManager.OnEnemyDie += DeSpawnEnemy;
+            
             CreateEnemyPools();
             StartCoroutine(SpawnEnemiesContinuously());
         }
@@ -58,6 +73,12 @@ namespace Managers
                 ObjectPool<BaseEnemy> objectPool = new ObjectPool<BaseEnemy>(enemyPoolSo.baseEnemyPrefab, enemyPoolSo.initialSize);
                 enemyPools.Add(enemyPoolSo.enemyType, objectPool);
             }
+        }
+
+        private void OnDisable()
+        {
+            EventManager.OnEnemyDie -= DeSpawnEnemy;
+            StopAllCoroutines();
         }
 
         #endregion

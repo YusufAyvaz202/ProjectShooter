@@ -1,4 +1,5 @@
 ﻿using System;
+using Abstracts;
 using Bullets;
 using UnityEngine;
 namespace Managers
@@ -16,5 +17,8 @@ namespace Managers
 
         //Event for player's Animations Actions.
         public static Action<float> PlayerMoveAnimationParameterChanged;
+        
+        //Event for Enemy Actions.
+        public static Action<BaseEnemy> OnEnemyDie;
     }
 }

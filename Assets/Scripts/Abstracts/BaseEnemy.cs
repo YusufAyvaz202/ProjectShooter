@@ -1,4 +1,5 @@
 ﻿using Interfaces;
+using Managers;
 using Misc;
 using Player.Movement;
 using ScriptableObjects;
@@ -12,16 +13,16 @@ namespace Abstracts
         [SerializeField] private EnemyDataSO myEnemyData;
         [SerializeField] private float _health;
         [SerializeField] private float _damage;
-        protected EnemyType enemyType;
+        public EnemyType enemyType;
 
         [Header("AI Settings")]
         private NavMeshAgent _navMeshAgent;
         private Transform _targetTransform;
         private Vector3 _destination;
-        private float _attackRange = 5f;
-        private float _attackCooldown = 2f;
+        private float _attackRange;
+        private float _attackCooldown;
 
-        private void TakeDamage(float damage)
+        public void TakeDamage(float damage)
         {
             _health -= damage;
             if (_health <= 0)
@@ -53,7 +54,7 @@ namespace Abstracts
 
         public void Attack()
         {
-            throw new System.NotImplementedException();
+            //throw new System.NotImplementedException();
         }
 
         public void Spawn()
@@ -62,12 +63,12 @@ namespace Abstracts
         }
         public void Despawn()
         {
-            throw new System.NotImplementedException();
+            //throw new System.NotImplementedException();
         }
 
         private void Die()
         {
-            throw new System.NotImplementedException();
+            EventManager.OnEnemyDie(this);
         }
 
         #region Initalize & Cleanup

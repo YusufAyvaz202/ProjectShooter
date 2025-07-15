@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using Abstracts;
 using Interfaces;
 using Managers;
 using UnityEngine;
@@ -9,6 +10,7 @@ namespace Bullets
     {
         [Header("Bullet Settings")]
         [SerializeField] private float bulletSpeed;
+        [SerializeField] private float bulletDamage;
         [SerializeField] private float bulletLifeTime = 3f;
         private Rigidbody _rigidbody;
         private Coroutine _lifeTimerCoroutine;
@@ -23,6 +25,15 @@ namespace Bullets
         {
             yield return new WaitForSeconds(bulletLifeTime);
             EventManager.OnDeSpawn(this);
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.CompareTag("Enemy"))
+            {
+                other.GetComponent<BaseEnemy>().TakeDamage(bulletDamage); 
+                EventManager.OnDeSpawn(this);
+            }
         }
 
         public void Spawn()
