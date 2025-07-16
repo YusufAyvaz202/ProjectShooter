@@ -42,12 +42,10 @@ namespace Player.Movement
             if (_moveInput != Vector2.zero)
             {
                 // Calculate the movement direction based on input
-                //Vector3 moveDirection = new Vector3(moveInput.x, 0, moveInput.y).normalized;
                 Vector3 moveDirection = transform.forward * _moveInput.y + transform.right * _moveInput.x;
 
                 // Move the player
-                //transform.Translate(moveDirection * (moveSpeed * Time.fixedDeltaTime), Space.World);
-                _rigidbody.MovePosition(transform.position + moveDirection * (Time.fixedDeltaTime * moveSpeed));
+                _rigidbody.MovePosition(transform.position + moveDirection.normalized * (Time.fixedDeltaTime * moveSpeed));
             }
 
             EventManager.PlayerMoveAnimationParameterChanged(Mathf.Abs(_moveInput.x) + Mathf.Abs(_moveInput.y));
