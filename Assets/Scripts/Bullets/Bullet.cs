@@ -2,6 +2,7 @@
 using Abstracts;
 using Interfaces;
 using Managers;
+using Player;
 using UnityEngine;
 namespace Bullets
 {
@@ -14,6 +15,13 @@ namespace Bullets
         [SerializeField] private float bulletLifeTime = 3f;
         private Rigidbody _rigidbody;
         private Coroutine _lifeTimerCoroutine;
+
+        [Header("Properties")]
+        public float BulletDamage
+        {
+            set => bulletDamage = value;
+        }
+
 
         private void FixedUpdate()
         {
@@ -31,7 +39,12 @@ namespace Bullets
         {
             if (other.CompareTag("Enemy"))
             {
-                other.GetComponent<BaseEnemy>().TakeDamage(bulletDamage); 
+                other.GetComponent<BaseEnemy>().TakeDamage(bulletDamage);
+                EventManager.OnDeSpawn(this);
+            }
+            else if (other.CompareTag("Player"))
+            {
+                other.GetComponent<PlayerHealth>().TakeDamage(bulletDamage);
                 EventManager.OnDeSpawn(this);
             }
         }
@@ -42,7 +55,10 @@ namespace Bullets
         }
         public void Despawn()
         {
-            StopCoroutine(_lifeTimerCoroutine);
+            if (_lifeTimerCoroutine is not null)
+            {
+                StopCoroutine(_lifeTimerCoroutine);
+            }
         }
 
         #region Initialize & Cleanup

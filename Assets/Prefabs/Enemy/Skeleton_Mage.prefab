@@ -136,3 +136,4 @@ MonoBehaviour:
   _health: 0
   _damage: 0
   enemyType: 0
+  _bulletPrefab: {fileID: 4745553037498814331, guid: 3ad16c297ce14e448a0542020a666ec5, type: 3}

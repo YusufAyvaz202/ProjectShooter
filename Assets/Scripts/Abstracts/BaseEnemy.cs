@@ -1,4 +1,5 @@
-﻿using Interfaces;
+﻿using Bullets;
+using Interfaces;
 using Managers;
 using Misc;
 using Player.Movement;
@@ -9,19 +10,23 @@ namespace Abstracts
 {
     public abstract class BaseEnemy : MonoBehaviour, IAttacker, IPoolable
     {
-        [Header("Enemy Settings")]
+        [Header("Enemy Base Settings")]
         [SerializeField] private EnemyDataSO myEnemyData;
         [SerializeField] private float _health;
         [SerializeField] private float _damage;
         public EnemyType enemyType;
 
-        [Header("AI Settings")]
+        [Header("Enemy AI Settings")]
         private NavMeshAgent _navMeshAgent;
         private Transform _targetTransform;
         private Vector3 _destination;
         private float _attackRange;
         private readonly float _minMoveSensitivity = 1f;
         private float _attackCooldown;
+        
+        [Header("Enemy Attack Settings")]
+        
+        [SerializeField] private GameObject _bulletPrefab;
 
         public void TakeDamage(float damage)
         {
@@ -49,15 +54,36 @@ namespace Abstracts
                 _navMeshAgent.SetDestination(_targetTransform.position);
             }
 
-            if (_navMeshAgent.isStopped)
+            if (Vector3.Distance(transform.position, _targetTransform.position) <= _attackRange)
             {
                 Attack();
             }
+            
         }
 
         public void Attack()
         {
-            //throw new System.NotImplementedException();
+            if (_navMeshAgent == null || _targetTransform == null) return;
+
+            // Check if the attack cooldown has elapsed
+            if (_attackCooldown <= 0f)
+            {
+                // Instantiate a bullet and set its position and direction
+                GameObject bullet = Instantiate(_bulletPrefab, transform.position, Quaternion.identity);
+                bullet.transform.LookAt(_targetTransform.position);
+                
+                // Set the bullet's damage
+                Bullet bulletComponent = bullet.GetComponent<Bullet>();
+                bulletComponent.BulletDamage = _damage;
+
+                // Reset the attack cooldown
+                _attackCooldown = myEnemyData.attackCooldown;
+            }
+            else
+            {
+                // Decrease the cooldown timer
+                _attackCooldown -= Time.deltaTime;
+            }
         }
 
         public void Spawn()
