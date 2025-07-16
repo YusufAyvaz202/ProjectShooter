@@ -1,4 +1,5 @@
-﻿using Bullets;
+﻿using System.Collections;
+using Bullets;
 using Interfaces;
 using Managers;
 using Misc;
@@ -23,10 +24,14 @@ namespace Abstracts
         private float _attackRange;
         private readonly float _minMoveSensitivity = 1f;
         private float _attackCooldown;
-        
+
         [Header("Enemy Attack Settings")]
-        
         [SerializeField] private GameObject _bulletPrefab;
+
+        [Header("Enemy Animation Settings")]
+        [SerializeField] private Animator _animator;
+        [SerializeField] private float _deadAnimationDuration;
+        private Coroutine _deadAnimationCoroutine;
 
         public void TakeDamage(float damage)
         {
@@ -41,7 +46,7 @@ namespace Abstracts
         {
             MoveToTarget();
         }
-        
+
         // Moves the enemy towards the target player.
         private void MoveToTarget()
         {
@@ -52,13 +57,14 @@ namespace Abstracts
             if (Vector3.Distance(transform.position, _destination) > _minMoveSensitivity)
             {
                 _navMeshAgent.SetDestination(_targetTransform.position);
+                _animator.SetFloat(Consts.ANIMATIONS_ENEMY_MOVE_SPEED, _navMeshAgent.velocity.magnitude);
             }
 
             if (Vector3.Distance(transform.position, _targetTransform.position) <= _attackRange)
             {
                 Attack();
             }
-            
+
         }
 
         public void Attack()
@@ -71,7 +77,7 @@ namespace Abstracts
                 // Instantiate a bullet and set its position and direction
                 GameObject bullet = Instantiate(_bulletPrefab, transform.position, Quaternion.identity);
                 bullet.transform.LookAt(_targetTransform.position);
-                
+
                 // Set the bullet's damage
                 Bullet bulletComponent = bullet.GetComponent<Bullet>();
                 bulletComponent.BulletDamage = _damage;
@@ -97,6 +103,14 @@ namespace Abstracts
 
         private void Die()
         {
+            _animator.SetTrigger(Consts.ANIMATIONS_ENEMY_DEAD);
+            _deadAnimationCoroutine = StartCoroutine(DeadAnimationEnd());
+            _navMeshAgent.isStopped = true;
+        }
+
+        private IEnumerator DeadAnimationEnd()
+        {
+            yield return new WaitForSeconds(_deadAnimationDuration);
             EventManager.OnEnemyDie(this);
         }
 
@@ -113,6 +127,14 @@ namespace Abstracts
             _navMeshAgent = GetComponent<NavMeshAgent>();
             _targetTransform = FindAnyObjectByType<PlayerMovement>().GetComponent<Transform>();
             _navMeshAgent.stoppingDistance = _attackRange;
+        }
+
+        private void OnDisable()
+        {
+            if (_deadAnimationCoroutine is not null)
+            {
+                StopCoroutine(_deadAnimationCoroutine);
+            }
         }
 
         #endregion

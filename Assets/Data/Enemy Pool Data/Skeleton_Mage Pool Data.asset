@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b66ff6ff44e4cb4beb2199352ae2c60, type: 3}
   m_Name: Skeleton_Mage Pool Data
   m_EditorClassIdentifier: 
-  baseEnemyPrefab: {fileID: 5686057147926549643, guid: f5b4333b8a6362843adf529d3561ff61, type: 3}
+  baseEnemyPrefab: {fileID: 4460187765921435790, guid: f5b4333b8a6362843adf529d3561ff61, type: 3}
   enemyType: 0
   initialSize: 10
