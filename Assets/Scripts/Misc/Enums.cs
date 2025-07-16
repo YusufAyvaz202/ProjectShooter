@@ -14,4 +14,10 @@
         Skeleton_Rogue = 2,
         Skeleton_Warrior = 3,
     }
+    
+    public enum PoolType
+    {
+        Enemy = 0,
+        Bullet = 1,
+    }
 }

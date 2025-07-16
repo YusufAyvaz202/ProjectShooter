@@ -12,19 +12,18 @@ namespace Abstracts
         [Header("Gun Properties")]
         [SerializeField] private Transform bulletSpawnTransform;
         [SerializeField] private Bullet bulletPrefab;
-        private ObjectPool<Bullet> _objectPool;
         protected GunType gunType;
 
         public virtual void Attack()
         {
-            var bullet = _objectPool.Get();
+            var bullet = Pools.Instance.GetPool<Bullet>(PoolType.Bullet).Get();
             bullet.transform.position = bulletSpawnTransform.position;
             bullet.transform.rotation = bulletSpawnTransform.rotation;
         }
         
         private void OnDeSpawn(Bullet obj)
         {
-            _objectPool.ReturnToPool(obj);
+            Pools.Instance.GetPool<Bullet>(PoolType.Bullet).ReturnToPool(obj);
         }
 
         public void ThrowGun()
@@ -36,7 +35,7 @@ namespace Abstracts
 
         private void OnEnable()
         {
-            _objectPool = new ObjectPool<Bullet>(bulletPrefab, 10);
+            Pools.Instance.CreatePool(PoolType.Bullet, bulletPrefab, 10);
             EventManager.OnDeSpawn += OnDeSpawn;
         }
 

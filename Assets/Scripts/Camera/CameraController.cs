@@ -22,14 +22,17 @@ namespace Camera
         {
             Vector3 viewDirection
                 = _target.position - new Vector3(transform.position.x, _target.transform.position.y, transform.position.z);
-            
+
             _orientationTransform.forward = viewDirection.normalized;
 
             Vector3 inputDirection
                 = _orientationTransform.forward * verticalAngle + _orientationTransform.right * horizontalAngle;
-            
-            _playerVisualTransform.forward 
-                = Vector3.Slerp(_playerVisualTransform.forward, inputDirection, rotationSpeed * Time.deltaTime);
+
+            if (inputDirection != Vector3.zero)
+            {
+                _playerVisualTransform.forward
+                    = Vector3.Slerp(_playerVisualTransform.forward, inputDirection, rotationSpeed * Time.deltaTime);
+            }
         }
 
         private void ReadMoveInput(Vector2 moveInput)

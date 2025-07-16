@@ -15,6 +15,7 @@ namespace Abstracts
         [SerializeField] private EnemyDataSO myEnemyData;
         [SerializeField] private float _health;
         [SerializeField] private float _damage;
+        private Collider _collider;
         public EnemyType enemyType;
 
         [Header("Enemy AI Settings")]
@@ -22,7 +23,7 @@ namespace Abstracts
         private Transform _targetTransform;
         private Vector3 _destination;
         private float _attackRange;
-        private readonly float _minMoveSensitivity = 1f;
+        private readonly float _minMoveSensitivity;
         private float _attackCooldown;
 
         [Header("Enemy Attack Settings")]
@@ -106,12 +107,13 @@ namespace Abstracts
             _animator.SetTrigger(Consts.ANIMATIONS_ENEMY_DEAD);
             _deadAnimationCoroutine = StartCoroutine(DeadAnimationEnd());
             _navMeshAgent.isStopped = true;
+            _collider.enabled = false;
         }
 
         private IEnumerator DeadAnimationEnd()
         {
             yield return new WaitForSeconds(_deadAnimationDuration);
-            EventManager.OnEnemyDie(this);
+            EventManager.OnEnemyDie?.Invoke(this);
         }
 
         #region Initalize & Cleanup
@@ -123,6 +125,8 @@ namespace Abstracts
             _attackCooldown = myEnemyData.attackCooldown;
             _attackRange = myEnemyData.attackRange;
             enemyType = myEnemyData.enemyType;
+            
+            _collider = GetComponent<Collider>();
 
             _navMeshAgent = GetComponent<NavMeshAgent>();
             _targetTransform = FindAnyObjectByType<PlayerMovement>().GetComponent<Transform>();

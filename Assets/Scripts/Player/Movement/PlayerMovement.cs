@@ -88,7 +88,7 @@ namespace Player.Movement
         private void SubscribeToEvents()
         {
             EventManager.OnMovePerformed += HandleMove;
-            EventManager.OnLookPerformed += HandleRotation; // Assuming you want to handle look input as well
+            EventManager.OnLookPerformed += HandleRotation; 
             EventManager.OnJumpPerformed += HandleJump;
         }
 
