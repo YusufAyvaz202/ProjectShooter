@@ -17,7 +17,7 @@
     
     public enum PoolType
     {
-        Enemy = 0,
+        MageFireball = 0,
         Bullet = 1,
     }
 }

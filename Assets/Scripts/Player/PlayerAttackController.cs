@@ -3,7 +3,7 @@ using Managers;
 using UnityEngine;
 namespace Player.Movement
 {
-    public class PlayerAttack : MonoBehaviour
+    public class PlayerAttackController : MonoBehaviour
     {
         [Header("Attack Settings")]
         public BaseGun _currentGun;

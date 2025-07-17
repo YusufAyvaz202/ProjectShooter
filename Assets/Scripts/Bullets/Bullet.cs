@@ -1,7 +1,8 @@
 ﻿using System.Collections;
 using Abstracts;
 using Interfaces;
-using Managers;
+using Misc;
+using Object_Pooling;
 using Player;
 using UnityEngine;
 namespace Bullets
@@ -32,7 +33,7 @@ namespace Bullets
         IEnumerator LifeTimer()
         {
             yield return new WaitForSeconds(bulletLifeTime);
-            EventManager.OnDeSpawn(this);
+            Pools.Instance.GetPool<Bullet>(PoolType.Bullet).ReturnToPool(this);
         }
 
         private void OnTriggerEnter(Collider other)
@@ -40,12 +41,12 @@ namespace Bullets
             if (other.CompareTag("Enemy"))
             {
                 other.GetComponent<BaseEnemy>().TakeDamage(bulletDamage);
-                EventManager.OnDeSpawn(this);
+                Pools.Instance.GetPool<Bullet>(PoolType.Bullet).ReturnToPool(this);
             }
             else if (other.CompareTag("Player"))
             {
-                other.GetComponent<PlayerHealth>().TakeDamage(bulletDamage);
-                EventManager.OnDeSpawn(this);
+                other.GetComponent<PlayerHealthController>().TakeDamage(bulletDamage);
+                Pools.Instance.GetPool<Bullet>(PoolType.Bullet).ReturnToPool(this);
             }
         }
 

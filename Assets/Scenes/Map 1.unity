@@ -958,7 +958,7 @@ MonoBehaviour:
   TargetOffset: {x: 0, y: 3, z: 0.2}
   Damping: {x: 1, y: 1}
   Lookahead:
-    Enabled: 1
+    Enabled: 0
     Time: 0.1
     Smoothing: 5.6
     IgnoreY: 0
@@ -1123,7 +1123,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &706786801
 Transform:
   m_ObjectHideFlags: 0
@@ -4639,8 +4639,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe45935af66844c180add395b8600f59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletSpawnTransform: {fileID: 4935082843175449521}
-  bulletPrefab: {fileID: -2018474008162336223, guid: 3ad16c297ce14e448a0542020a666ec5, type: 3}
+  gunData: {fileID: 11400000, guid: dc765953eda6e4c4c98c0342995dafeb, type: 2}
+  ammunitionSpawnTransform: {fileID: 4935082843175449521}
 --- !u!1 &7621411644712857052
 GameObject:
   m_ObjectHideFlags: 0
@@ -4944,6 +4944,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 3612892639230969724}
+  - {fileID: 661812195}
   - {fileID: 410087041}
   - {fileID: 832575519}
   - {fileID: 704215540}
@@ -4955,4 +4956,3 @@ SceneRoots:
   - {fileID: 3183603519811939448}
   - {fileID: 153036176}
   - {fileID: 1134207681}
-  - {fileID: 661812195}

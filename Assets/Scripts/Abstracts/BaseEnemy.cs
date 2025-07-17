@@ -23,7 +23,7 @@ namespace Abstracts
         private Transform _targetTransform;
         private Vector3 _destination;
         private float _attackRange;
-        private readonly float _minMoveSensitivity;
+        private readonly float _minMoveSensitivity = 1f;
         private float _attackCooldown;
 
         [Header("Enemy Attack Settings")]
@@ -43,7 +43,7 @@ namespace Abstracts
             }
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
             MoveToTarget();
         }
@@ -127,9 +127,9 @@ namespace Abstracts
             enemyType = myEnemyData.enemyType;
             
             _collider = GetComponent<Collider>();
-
             _navMeshAgent = GetComponent<NavMeshAgent>();
-            _targetTransform = FindAnyObjectByType<PlayerMovement>().GetComponent<Transform>();
+            _targetTransform = FindAnyObjectByType<PlayerMovementController>()?.GetComponent<Transform>();
+
             _navMeshAgent.stoppingDistance = _attackRange;
         }
 
@@ -142,7 +142,6 @@ namespace Abstracts
         }
 
         #endregion
-
 
     }
 }

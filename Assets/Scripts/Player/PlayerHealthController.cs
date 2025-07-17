@@ -1,16 +1,17 @@
 ﻿using UnityEngine;
 namespace Player
 {
-    public class PlayerHealth : MonoBehaviour
+    public class PlayerHealthController : MonoBehaviour
     {
         [Header("Player Health Settings")]
-        [SerializeField] private float _health = 100f; // Player's health
+        [SerializeField] private float _health = 100f;
 
         public void TakeDamage(float damage)
         {
             _health -= damage;
             if (_health <= 0)
             {
+                Die();
             }
         }
 

@@ -1,6 +1,5 @@
 ﻿using System;
 using Abstracts;
-using Bullets;
 using UnityEngine;
 namespace Managers
 {
@@ -13,7 +12,6 @@ namespace Managers
 
         // Event for player's Attack Actions.
         public static Action OnAttackPerformed;
-        public static Action<Bullet> OnDeSpawn;
 
         //Event for player's Animations Actions.
         public static Action<float> PlayerMoveAnimationParameterChanged;

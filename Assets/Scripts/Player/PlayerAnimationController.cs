@@ -3,7 +3,7 @@ using UnityEngine;
 using Misc;
 namespace Player.Animations
 {
-    public class PlayerAnimationsController : MonoBehaviour
+    public class PlayerAnimationController : MonoBehaviour
     {
         [Header("Animations Settings")]
         [SerializeField] private Animator _animator;

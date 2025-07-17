@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Player.Movement
 {
     [RequireComponent(typeof(Rigidbody))]
-    public class PlayerMovement : MonoBehaviour
+    public class PlayerMovementController : MonoBehaviour
     {
         [Header("Rigidbody Settings")]
         private Rigidbody _rigidbody;
