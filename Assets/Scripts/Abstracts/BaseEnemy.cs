@@ -1,5 +1,5 @@
 ﻿using System.Collections;
-using Bullets;
+using Ammunition;
 using Interfaces;
 using Managers;
 using Misc;
@@ -81,7 +81,7 @@ namespace Abstracts
 
                 // Set the bullet's damage
                 Bullet bulletComponent = bullet.GetComponent<Bullet>();
-                bulletComponent.BulletDamage = _damage;
+                bulletComponent.Damage = _damage;
 
                 // Reset the attack cooldown
                 _attackCooldown = myEnemyData.attackCooldown;
