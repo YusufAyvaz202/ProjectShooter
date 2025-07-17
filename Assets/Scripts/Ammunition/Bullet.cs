@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using Abstracts;
+using Interfaces;
 using Misc;
 using Object_Pooling;
-using Player;
 using UnityEngine;
 namespace Ammunition
 {
@@ -14,24 +14,24 @@ namespace Ammunition
             _rigidbody.MovePosition(newPosition);
         }
 
-        protected override IEnumerator LifeTimer()
+        protected override void LifeTimer()
         {
-            yield return new WaitForSeconds(lifeTime);
-            Pools.Instance.GetPool<Bullet>(PoolType.Bullet).ReturnToPool(this);
+            base.LifeTimer();
+            ReturnToPool();
         }
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag("Enemy"))
+            if (other.gameObject.TryGetComponent<IAttackable>(out var attackable))
             {
-                other.GetComponent<BaseEnemy>().TakeDamage(damage);
-                Pools.Instance.GetPool<Bullet>(PoolType.Bullet).ReturnToPool(this);
+                attackable.TakeDamage(damage);
+                ReturnToPool();
             }
-            else if (other.CompareTag("Player"))
-            {
-                other.GetComponent<PlayerHealthController>().TakeDamage(damage);
-                Pools.Instance.GetPool<Bullet>(PoolType.Bullet).ReturnToPool(this);
-            }
+        }
+        
+        private void ReturnToPool()
+        {
+            Pools.Instance.GetPool<Bullet>(PoolType.Bullet).ReturnToPool(this);
         }
 
     }

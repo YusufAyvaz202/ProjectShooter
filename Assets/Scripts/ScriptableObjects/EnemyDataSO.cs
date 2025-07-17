@@ -9,6 +9,7 @@ namespace ScriptableObjects
         public float damage;
         public float attackRange;
         public float attackCooldown;
+        public float minMoveSensitivity = 1f;
         public EnemyType enemyType;
     }
 }

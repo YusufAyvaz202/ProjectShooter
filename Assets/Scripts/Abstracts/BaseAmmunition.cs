@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using Interfaces;
+﻿using Interfaces;
 using ScriptableObjects;
 using UnityEngine;
 namespace Abstracts
@@ -13,29 +12,19 @@ namespace Abstracts
         protected float damage;
         protected float lifeTime;
         protected Rigidbody _rigidbody;
-        protected Coroutine _lifeTimerCoroutine;
-        
-        [Header("Properties")]
-        public float Damage
-        {
-            set => damage = value;
-        }
 
-        protected virtual IEnumerator LifeTimer()
+        protected virtual void LifeTimer()
         {
-            yield return new WaitForSeconds(lifeTime);
-        }
+            
+        } 
         
         public void Spawn()
         {
-            _lifeTimerCoroutine = StartCoroutine(LifeTimer());
+            Invoke(nameof(LifeTimer), lifeTime);
         }
         public void Despawn()
         {
-            if (_lifeTimerCoroutine is not null)
-            {
-                StopCoroutine(_lifeTimerCoroutine);
-            }
+            
         }
 
         #region Initialize & Cleanup
@@ -45,7 +34,6 @@ namespace Abstracts
             speed = ammunitionData.speed;
             damage = ammunitionData.damage;
             lifeTime = ammunitionData.lifeTime;
-            
             
             _rigidbody = GetComponent<Rigidbody>();
         }

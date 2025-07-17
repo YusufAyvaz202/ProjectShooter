@@ -598,6 +598,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5273424983843781994}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2230511291443570663
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7136569476237506642}
+  m_Layer: 0
+  m_Name: Ammunition Spawn Transform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7136569476237506642
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2230511291443570663}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8588830233813927363}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2257949221614626098
 GameObject:
   m_ObjectHideFlags: 0
@@ -1283,6 +1314,7 @@ GameObject:
   - component: {fileID: 3200248355109675997}
   - component: {fileID: 2675202772246974597}
   - component: {fileID: 4460187765921435790}
+  - component: {fileID: 1660538650207887261}
   m_Layer: 0
   m_Name: Skeleton_Mage
   m_TagString: Enemy
@@ -1304,6 +1336,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8045911957727813904}
+  - {fileID: 7136569476237506642}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &3200248355109675997
@@ -1364,12 +1397,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myEnemyData: {fileID: 11400000, guid: 7cfa1b814608160498a87bb62128c617, type: 2}
-  _health: 0
-  _damage: 0
   enemyType: 0
-  _bulletPrefab: {fileID: 4745553037498814331, guid: 3ad16c297ce14e448a0542020a666ec5, type: 3}
   _animator: {fileID: 4770577523968865789}
   _deadAnimationDuration: 1
+  _fireballStick: {fileID: 1660538650207887261}
+--- !u!114 &1660538650207887261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3666358293868303319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc6a6f85ce1d4042a9cb9ce8791a8e62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gunData: {fileID: 11400000, guid: 6db09c9a8312df84395174cbc272aa02, type: 2}
+  ammunitionSpawnTransform: {fileID: 7136569476237506642}
 --- !u!1 &3712127042585050287
 GameObject:
   m_ObjectHideFlags: 0

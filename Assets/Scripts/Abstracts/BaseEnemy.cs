@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using Ammunition;
-using Interfaces;
+﻿using Interfaces;
 using Managers;
 using Misc;
 using Player.Movement;
@@ -9,33 +7,36 @@ using UnityEngine;
 using UnityEngine.AI;
 namespace Abstracts
 {
-    public abstract class BaseEnemy : MonoBehaviour, IAttacker, IPoolable
+    public abstract class BaseEnemy : MonoBehaviour, IAttacker, IPoolable, IAttackable
     {
-        [Header("Enemy Base Settings")]
-        [SerializeField] private EnemyDataSO myEnemyData;
-        [SerializeField] private float _health;
-        [SerializeField] private float _damage;
+        [Header("Enemy Data")]
+        [SerializeField] protected EnemyDataSO myEnemyData;
+        
+        [Header("References")]
+        protected NavMeshAgent _navMeshAgent;
+        protected Transform _targetTransform;
         private Collider _collider;
+        
+        [Header("Attack Settings")]
+        protected float _attackCooldown;
+        protected float _attackRange;
+        protected float _damage; // this can be removed because damage comes from Guns.
+        
+        [Header("Health Settings")]
+       [SerializeField] protected float _health;
         public EnemyType enemyType;
 
-        [Header("Enemy AI Settings")]
-        private NavMeshAgent _navMeshAgent;
-        private Transform _targetTransform;
+        [Header("Enemy Move Settings")]
+        protected float _minMoveSensitivity;
         private Vector3 _destination;
-        private float _attackRange;
-        private readonly float _minMoveSensitivity = 1f;
-        private float _attackCooldown;
-
-        [Header("Enemy Attack Settings")]
-        [SerializeField] private GameObject _bulletPrefab;
 
         [Header("Enemy Animation Settings")]
         [SerializeField] private Animator _animator;
         [SerializeField] private float _deadAnimationDuration;
-        private Coroutine _deadAnimationCoroutine;
 
         public void TakeDamage(float damage)
         {
+            Debug.Log("Enemy took damage: " + damage + " Current Health: " + _health); 
             _health -= damage;
             if (_health <= 0)
             {
@@ -52,7 +53,8 @@ namespace Abstracts
         private void MoveToTarget()
         {
             if (_navMeshAgent == null || _targetTransform == null) return;
-
+            transform.LookAt(_targetTransform);
+            
             // Update the destination to the target's position if it has changed
             _destination = _targetTransform.position;
             if (Vector3.Distance(transform.position, _destination) > _minMoveSensitivity)
@@ -65,32 +67,10 @@ namespace Abstracts
             {
                 Attack();
             }
-
         }
 
-        public void Attack()
+        public virtual void Attack()
         {
-            if (_navMeshAgent == null || _targetTransform == null) return;
-
-            // Check if the attack cooldown has elapsed
-            if (_attackCooldown <= 0f)
-            {
-                // Instantiate a bullet and set its position and direction
-                GameObject bullet = Instantiate(_bulletPrefab, transform.position, Quaternion.identity);
-                bullet.transform.LookAt(_targetTransform.position);
-
-                // Set the bullet's damage
-                Bullet bulletComponent = bullet.GetComponent<Bullet>();
-                bulletComponent.Damage = _damage;
-
-                // Reset the attack cooldown
-                _attackCooldown = myEnemyData.attackCooldown;
-            }
-            else
-            {
-                // Decrease the cooldown timer
-                _attackCooldown -= Time.deltaTime;
-            }
         }
 
         public void Spawn()
@@ -105,15 +85,14 @@ namespace Abstracts
         private void Die()
         {
             _animator.SetTrigger(Consts.ANIMATIONS_ENEMY_DEAD);
-            _deadAnimationCoroutine = StartCoroutine(DeadAnimationEnd());
+            Invoke(nameof(DieAnimationEnd), _deadAnimationDuration);
             _navMeshAgent.isStopped = true;
             _collider.enabled = false;
         }
 
-        private IEnumerator DeadAnimationEnd()
+        private void DieAnimationEnd()
         {
-            yield return new WaitForSeconds(_deadAnimationDuration);
-            EventManager.OnEnemyDie?.Invoke(this);
+            EventManager.OnEnemyDie(this);
         }
 
         #region Initalize & Cleanup
@@ -122,23 +101,17 @@ namespace Abstracts
         {
             _health = myEnemyData.health;
             _damage = myEnemyData.damage;
-            _attackCooldown = myEnemyData.attackCooldown;
             _attackRange = myEnemyData.attackRange;
+            _attackCooldown = myEnemyData.attackCooldown;
+            _minMoveSensitivity = myEnemyData.minMoveSensitivity;
             enemyType = myEnemyData.enemyType;
             
             _collider = GetComponent<Collider>();
+            _collider.enabled = true;
             _navMeshAgent = GetComponent<NavMeshAgent>();
             _targetTransform = FindAnyObjectByType<PlayerMovementController>()?.GetComponent<Transform>();
 
             _navMeshAgent.stoppingDistance = _attackRange;
-        }
-
-        private void OnDisable()
-        {
-            if (_deadAnimationCoroutine is not null)
-            {
-                StopCoroutine(_deadAnimationCoroutine);
-            }
         }
 
         #endregion

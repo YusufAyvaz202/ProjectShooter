@@ -1,7 +1,8 @@
-﻿using UnityEngine;
+﻿using Interfaces;
+using UnityEngine;
 namespace Player
 {
-    public class PlayerHealthController : MonoBehaviour
+    public class PlayerHealthController : MonoBehaviour, IAttackable
     {
         [Header("Player Health Settings")]
         [SerializeField] private float _health = 100f;
