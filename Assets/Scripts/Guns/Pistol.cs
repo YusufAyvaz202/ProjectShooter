@@ -19,7 +19,7 @@ namespace Guns
             bullet.transform.rotation = ammunitionSpawnTransform.rotation;
         }
 
-        #region Initlalize & CleanUp
+        #region Initialize & Cleanup
 
         private void Initialize()
         {

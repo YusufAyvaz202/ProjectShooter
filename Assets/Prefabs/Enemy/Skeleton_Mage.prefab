@@ -623,7 +623,7 @@ Transform:
   m_GameObject: {fileID: 2230511291443570663}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0.5}
+  m_LocalPosition: {x: 0, y: 1, z: 0.81}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1358,10 +1358,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.7
-  m_Height: 2.5
+  m_Radius: 0.42930987
+  m_Height: 2.2476587
   m_Direction: 1
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Center: {x: 0, y: 1.1261706, z: 0.02387005}
 --- !u!195 &2675202772246974597
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1397,6 +1397,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myEnemyData: {fileID: 11400000, guid: 7cfa1b814608160498a87bb62128c617, type: 2}
+  _health: 0
   enemyType: 0
   _animator: {fileID: 4770577523968865789}
   _deadAnimationDuration: 1

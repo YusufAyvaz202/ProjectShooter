@@ -1,12 +1,33 @@
-﻿using Abstracts;
+﻿using System;
+using Abstracts;
+using Ammunition;
+using Misc;
+using Object_Pooling;
 namespace Guns
 {
     public class FireballStick : BaseGun
     {
+
+        private void Start()
+        {
+            Initialize();
+        }
+
         public override void Attack()
         {
-            // Temporarily solution for testing. In the future, this should be replaced with a proper object pooling system.
-            Instantiate(ammunitionPrefab, ammunitionSpawnTransform.position, ammunitionSpawnTransform.rotation);
+            base.Attack();
+            var bullet = Pools.Instance.GetPool<Fireball>(PoolType.MageFireball).Get();
+            bullet.transform.position = ammunitionSpawnTransform.position;
+            bullet.transform.rotation = ammunitionSpawnTransform.rotation;
         }
+
+        #region Initialize & Cleanup
+
+        private void Initialize()
+        {
+            Pools.Instance.CreatePool(PoolType.MageFireball, ammunitionPrefab.GetComponent<Fireball>(), initialSize);
+        }
+
+        #endregion
     }
 }

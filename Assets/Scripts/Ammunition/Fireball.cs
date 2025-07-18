@@ -1,4 +1,7 @@
 ﻿using Abstracts;
+using Interfaces;
+using Misc;
+using Object_Pooling;
 using UnityEngine;
 namespace Ammunition
 {
@@ -8,6 +11,26 @@ namespace Ammunition
         {
             Vector3 newPosition = transform.position + transform.forward * (speed * Time.fixedDeltaTime);
             _rigidbody.MovePosition(newPosition);
+        }
+        
+        protected override void LifeTimer()
+        {
+            base.LifeTimer();
+            ReturnToPool();
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.gameObject.TryGetComponent<IAttackable>(out var attackable))
+            {
+                attackable.TakeDamage(damage);
+                ReturnToPool();
+            }
+        }
+        
+        private void ReturnToPool()
+        {
+            Pools.Instance.GetPool<Fireball>(PoolType.MageFireball).ReturnToPool(this);
         }
     }
 }

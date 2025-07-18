@@ -12,6 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 985784ecfac646c5b5b3b390fe8ed453, type: 3}
   m_Name: Pistol
   m_EditorClassIdentifier: 
-  ammunitionSpawnTransform: {fileID: 0}
   ammunitionPrefab: {fileID: 4745553037498814331, guid: 3ad16c297ce14e448a0542020a666ec5, type: 3}
   initialSize: 10
