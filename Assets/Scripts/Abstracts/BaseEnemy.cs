@@ -16,14 +16,14 @@ namespace Abstracts
         protected NavMeshAgent _navMeshAgent;
         protected Transform _targetTransform;
         private Collider _collider;
-        
+
         [Header("Attack Settings")]
         protected float _attackCooldown;
         protected float _attackRange;
         protected float _damage; // this can be removed because damage comes from Guns.
-        
+
         [Header("Health Settings")]
-       [SerializeField] protected float _health;
+        [SerializeField] protected float _health;
         public EnemyType enemyType;
 
         [Header("Enemy Move Settings")]
@@ -34,9 +34,14 @@ namespace Abstracts
         [SerializeField] private Animator _animator;
         [SerializeField] private float _deadAnimationDuration;
 
+        private void FixedUpdate()
+        {
+            MoveToTarget();
+        }
+
         public void TakeDamage(float damage)
         {
-            Debug.Log("Enemy took damage: " + damage + " Current Health: " + _health); 
+            Debug.Log("Enemy took damage: " + damage + " Current Health: " + _health);
             _health -= damage;
             if (_health <= 0)
             {
@@ -44,17 +49,12 @@ namespace Abstracts
             }
         }
 
-        private void FixedUpdate()
-        {
-            MoveToTarget();
-        }
-
         // Moves the enemy towards the target player.
         private void MoveToTarget()
         {
             if (_navMeshAgent == null || _targetTransform == null) return;
             transform.LookAt(_targetTransform);
-            
+
             // Update the destination to the target's position if it has changed
             _destination = _targetTransform.position;
             if (Vector3.Distance(transform.position, _destination) > _minMoveSensitivity)
@@ -69,17 +69,15 @@ namespace Abstracts
             }
         }
 
-        public virtual void Attack()
-        {
-        }
+        public abstract void Attack();
 
         public void Spawn()
         {
-            //throw new System.NotImplementedException();
+            //TODO: Check spawn position and rotation 
         }
         public void Despawn()
         {
-            //throw new System.NotImplementedException();
+            //TODO: Make a score System with EventManager
         }
 
         private void Die()
@@ -95,7 +93,7 @@ namespace Abstracts
             EventManager.OnEnemyDie(this);
         }
 
-        #region Initalize & Cleanup
+        #region Initialize & Cleanup
 
         private void OnEnable()
         {
@@ -105,12 +103,12 @@ namespace Abstracts
             _attackCooldown = myEnemyData.attackCooldown;
             _minMoveSensitivity = myEnemyData.minMoveSensitivity;
             enemyType = myEnemyData.enemyType;
-            
+
             _collider = GetComponent<Collider>();
-            _collider.enabled = true;
             _navMeshAgent = GetComponent<NavMeshAgent>();
             _targetTransform = FindAnyObjectByType<PlayerMovementController>()?.GetComponent<Transform>();
 
+            _collider.enabled = true;
             _navMeshAgent.stoppingDistance = _attackRange;
         }
 

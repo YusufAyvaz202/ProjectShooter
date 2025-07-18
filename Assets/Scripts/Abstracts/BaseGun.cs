@@ -11,14 +11,10 @@ namespace Abstracts
         [SerializeField] protected Transform ammunitionSpawnTransform;
         protected GameObject ammunitionPrefab;
         protected int initialSize;
-        //protected GunType gunType;
 
-        public virtual void Attack()
-        {
+        public abstract void Attack();
 
-        }
-
-        #region Initlalize & CleanUp
+        #region Initialize & Cleanup
 
         private void OnEnable()
         {

@@ -12,7 +12,6 @@ namespace Enemys
 
         public override void Attack()
         {
-            base.Attack();
             if (_navMeshAgent == null || _targetTransform == null) return;
             if (_attackCooldown <= 0f)
             {

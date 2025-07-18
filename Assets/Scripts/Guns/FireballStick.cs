@@ -15,7 +15,6 @@ namespace Guns
 
         public override void Attack()
         {
-            base.Attack();
             var bullet = Pools.Instance.GetPool<Fireball>(PoolType.MageFireball).Get();
             bullet.transform.position = ammunitionSpawnTransform.position;
             bullet.transform.rotation = ammunitionSpawnTransform.rotation;

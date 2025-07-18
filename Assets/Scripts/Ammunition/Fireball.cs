@@ -15,7 +15,6 @@ namespace Ammunition
         
         protected override void LifeTimer()
         {
-            base.LifeTimer();
             ReturnToPool();
         }
 

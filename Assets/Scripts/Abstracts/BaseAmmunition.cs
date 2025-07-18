@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Abstracts
 {
     [RequireComponent(typeof(Rigidbody))]
-    public class BaseAmmunition : MonoBehaviour, IPoolable
+    public abstract class BaseAmmunition : MonoBehaviour, IPoolable
     {
         [Header("Bullet Settings")]
         [SerializeField] private AmmunitionDataSO ammunitionData;
@@ -13,10 +13,7 @@ namespace Abstracts
         protected float lifeTime;
         protected Rigidbody _rigidbody;
 
-        protected virtual void LifeTimer()
-        {
-            
-        } 
+        protected abstract void LifeTimer();
         
         public void Spawn()
         {
