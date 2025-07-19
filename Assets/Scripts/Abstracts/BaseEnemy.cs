@@ -1,7 +1,7 @@
 ﻿using Interfaces;
 using Managers;
 using Misc;
-using Player.Movement;
+using Player;
 using ScriptableObjects;
 using UnityEngine;
 using UnityEngine.AI;
@@ -20,7 +20,6 @@ namespace Abstracts
         [Header("Attack Settings")]
         protected float _attackCooldown;
         protected float _attackRange;
-        protected float _damage; // this can be removed because damage comes from Guns.
 
         [Header("Health Settings")]
         [SerializeField] protected float _health;
@@ -98,7 +97,6 @@ namespace Abstracts
         private void OnEnable()
         {
             _health = myEnemyData.health;
-            _damage = myEnemyData.damage;
             _attackRange = myEnemyData.attackRange;
             _attackCooldown = myEnemyData.attackCooldown;
             _minMoveSensitivity = myEnemyData.minMoveSensitivity;

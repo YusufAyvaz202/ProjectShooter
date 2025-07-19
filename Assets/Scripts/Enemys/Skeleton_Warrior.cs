@@ -6,7 +6,7 @@ namespace Enemys
 
         public override void Attack()
         {
-            throw new System.NotImplementedException();
+           // TODO: Implement the attack logic for Skeleton Warrior
         }
     }
 }

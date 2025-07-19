@@ -1,4 +1,5 @@
 ﻿using Abstracts;
+using DG.Tweening;
 using Interfaces;
 using Misc;
 using Object_Pooling;
@@ -7,10 +8,9 @@ namespace Ammunition
 {
     public class Fireball : BaseAmmunition
     {
-        private void FixedUpdate()
+        public void AttackToTarget(Vector3 targetPosition)
         {
-            Vector3 newPosition = transform.position + transform.forward * (speed * Time.fixedDeltaTime);
-            _rigidbody.MovePosition(newPosition);
+            transform.DOMove(targetPosition, 2f).SetEase(Ease.InOutCirc);
         }
         
         protected override void LifeTimer()
@@ -29,7 +29,7 @@ namespace Ammunition
         
         private void ReturnToPool()
         {
-            Pools.Instance.GetPool<Fireball>(PoolType.MageFireball).ReturnToPool(this);
+            Pools.Instance.GetPool<Fireball>(PoolType.Fireball).ReturnToPool(this);
         }
     }
 }

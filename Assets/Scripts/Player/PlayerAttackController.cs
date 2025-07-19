@@ -1,7 +1,7 @@
 ﻿using Abstracts;
 using Managers;
 using UnityEngine;
-namespace Player.Movement
+namespace Player
 {
     public class PlayerAttackController : MonoBehaviour
     {

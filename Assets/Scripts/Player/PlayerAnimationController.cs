@@ -1,7 +1,7 @@
 ﻿using Managers;
-using UnityEngine;
 using Misc;
-namespace Player.Animations
+using UnityEngine;
+namespace Player
 {
     public class PlayerAnimationController : MonoBehaviour
     {

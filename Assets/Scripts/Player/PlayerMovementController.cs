@@ -1,7 +1,6 @@
 using Managers;
 using UnityEngine;
-
-namespace Player.Movement
+namespace Player
 {
     [RequireComponent(typeof(Rigidbody))]
     public class PlayerMovementController : MonoBehaviour
