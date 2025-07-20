@@ -8,9 +8,12 @@ namespace Ammunition
 {
     public class Fireball : BaseAmmunition
     {
+        [Header("Settings")]
+        [SerializeField] private float _moveDuration;
         public void AttackToTarget(Vector3 targetPosition)
         {
-            transform.DOMove(targetPosition, 2f).SetEase(Ease.InOutCirc);
+            //TODO: Give randomness for fireball movement and animation. Change Ease to something more suitable.
+            transform.DOMove(targetPosition, _moveDuration).SetEase(Ease.InBounce);
         }
         
         protected override void LifeTimer()

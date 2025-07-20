@@ -23,7 +23,7 @@ namespace Enemys
             else
             {
                 // Decrease the cooldown timer
-                _attackCooldown -= Time.deltaTime;
+                _attackCooldown -= Time.fixedDeltaTime;
             }
         }
 

@@ -44,7 +44,7 @@ namespace Managers
             }
         }
         
-        private void DeSpawnEnemy(BaseEnemy enemy)
+        private void DespawnEnemy(BaseEnemy enemy)
         {
             if (enemyPools.TryGetValue(enemy.enemyType, out var pool))
             {
@@ -60,7 +60,7 @@ namespace Managers
 
         private void OnEnable()
         {
-            EventManager.OnEnemyDie += DeSpawnEnemy;
+            EventManager.OnEnemyDie += DespawnEnemy;
             
             CreateEnemyPools();
             StartCoroutine(SpawnEnemiesContinuously());
@@ -77,7 +77,7 @@ namespace Managers
 
         private void OnDisable()
         {
-            EventManager.OnEnemyDie -= DeSpawnEnemy;
+            EventManager.OnEnemyDie -= DespawnEnemy;
             StopAllCoroutines();
         }
 

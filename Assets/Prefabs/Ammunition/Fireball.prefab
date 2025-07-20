@@ -74,6 +74,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ammunitionData: {fileID: 11400000, guid: a058c01353c48c1429ea87b964b94a2b, type: 2}
+  _moveDuration: 1
 --- !u!1 &6577622801742627015
 GameObject:
   m_ObjectHideFlags: 0

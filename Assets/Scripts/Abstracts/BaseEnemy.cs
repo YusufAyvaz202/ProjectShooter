@@ -32,6 +32,9 @@ namespace Abstracts
         [Header("Enemy Animation Settings")]
         [SerializeField] private Animator _animator;
         [SerializeField] private float _deadAnimationDuration;
+        
+        [Header("Properties")]
+        public Transform TargetTransform => _targetTransform;
 
         private void FixedUpdate()
         {

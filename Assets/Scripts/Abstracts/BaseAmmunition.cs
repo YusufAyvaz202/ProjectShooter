@@ -21,7 +21,7 @@ namespace Abstracts
         }
         public void Despawn()
         {
-            
+            CancelInvoke(nameof(LifeTimer));
         }
 
         #region Initialize & Cleanup
