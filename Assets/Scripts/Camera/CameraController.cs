@@ -14,7 +14,7 @@ namespace Camera
         private float horizontalAngle;
         private float verticalAngle;
 
-        private void Update()
+        private void LateUpdate()
         {
             SetupCameraRotation();
         }

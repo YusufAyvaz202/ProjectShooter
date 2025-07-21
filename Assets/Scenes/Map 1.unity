@@ -1123,7 +1123,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &706786801
 Transform:
   m_ObjectHideFlags: 0
@@ -1980,6 +1980,8 @@ GameObject:
   - component: {fileID: 4890154827897457392}
   - component: {fileID: 5207693063606749811}
   - component: {fileID: 7610030208043958040}
+  - component: {fileID: 7610030208043958041}
+  - component: {fileID: 7610030208043958042}
   m_Layer: 0
   m_Name: 2H_Staff
   m_TagString: Untagged
@@ -3248,7 +3250,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3881277709949286887
 Transform:
   m_ObjectHideFlags: 0
@@ -4130,6 +4132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3c51d859aaa4d64bf864854c690fbf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerTransform: {fileID: 628924559}
   _currentGun: {fileID: 7610030208043958040}
 --- !u!4 &6254991097784506859
 Transform:
@@ -4641,6 +4644,54 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunData: {fileID: 11400000, guid: dc765953eda6e4c4c98c0342995dafeb, type: 2}
   ammunitionSpawnTransform: {fileID: 4935082843175449521}
+--- !u!54 &7610030208043958041
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 399005256425944847}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &7610030208043958042
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 399005256425944847}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.57620937, y: 2.1546998, z: 0.29234514}
+  m_Center: {x: 0.042737644, y: 0.17690425, z: -0.00000014697186}
 --- !u!1 &7621411644712857052
 GameObject:
   m_ObjectHideFlags: 0

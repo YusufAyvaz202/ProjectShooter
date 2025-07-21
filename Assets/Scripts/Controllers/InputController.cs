@@ -15,6 +15,7 @@ namespace Controllers
         private InputAction _lookAction;
         private InputAction _jumpAction;
         private InputAction _attackAction;
+        private InputAction _throwAction;
 
         #region MovementPerforms
 
@@ -46,6 +47,12 @@ namespace Controllers
             EventManager.OnAttackPerformed();
         }
 
+        private void ThrowActionPerformed(InputAction.CallbackContext callbackContext)
+        {
+            Debug.Log("Throw action performed. In InputController.");
+            EventManager.ThrowActionPerformed?.Invoke();
+        }
+
         #endregion
 
         #region Initialization and Cleanup
@@ -68,6 +75,8 @@ namespace Controllers
             //_attackAction.started += OnAttackPerformed;
             _attackAction.performed += OnAttackPerformed;
             //_attackAction.canceled += OnAttackPerformed;
+            
+            _throwAction.performed += ThrowActionPerformed;
         }
 
         private void UnsubscribeFromEvents()
@@ -87,6 +96,8 @@ namespace Controllers
             //_attackAction.started -= OnAttackPerformed;
             _attackAction.performed -= OnAttackPerformed;
             //_attackAction.canceled -= OnAttackPerformed;
+            
+            _throwAction.performed -= ThrowActionPerformed;
         }
 
         private void OnEnable()
@@ -100,6 +111,7 @@ namespace Controllers
                 _lookAction = inputActions.FindAction(Consts.LOOK_ACTION, throwIfNotFound: true);
                 _jumpAction = inputActions.FindAction(Consts.JUMP_ACTION, throwIfNotFound: true);
                 _attackAction = inputActions.FindAction(Consts.ATTACK_ACTION, throwIfNotFound: true);
+                _throwAction = inputActions.FindAction(Consts.THROW_ACTION, throwIfNotFound: true);
             }
             else
             {

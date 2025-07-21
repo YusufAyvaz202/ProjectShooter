@@ -12,6 +12,8 @@ namespace Managers
 
         // Event for player's Attack Actions.
         public static Action OnAttackPerformed;
+        public static Action ThrowActionPerformed;
+        public static Action OnGunThrowPerformed;
 
         //Event for player's Animations Actions.
         public static Action<float> PlayerMoveAnimationParameterChanged;

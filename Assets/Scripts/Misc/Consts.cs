@@ -7,6 +7,7 @@
         public const string LOOK_ACTION = "Look";
         public const string JUMP_ACTION = "Jump";
         public const string ATTACK_ACTION = "Attack";
+        public const string THROW_ACTION = "Throw";
         
         // Players Animation string
         public const string ANIMATIONS_MOVE_SPEED = "MoveSpeed";
