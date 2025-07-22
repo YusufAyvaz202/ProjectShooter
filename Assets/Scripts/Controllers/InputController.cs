@@ -49,7 +49,6 @@ namespace Controllers
 
         private void ThrowActionPerformed(InputAction.CallbackContext callbackContext)
         {
-            Debug.Log("Throw action performed. In InputController.");
             EventManager.ThrowActionPerformed?.Invoke();
         }
 

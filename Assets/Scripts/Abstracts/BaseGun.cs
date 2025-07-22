@@ -31,7 +31,7 @@ namespace Abstracts
         
         private void OnGunThrowPerformed()
         {
-            Invoke(nameof(OnGunThrow), .75f);
+            Invoke(nameof(OnGunThrow), .15f);
         }
 
         #region Initialize & Cleanup

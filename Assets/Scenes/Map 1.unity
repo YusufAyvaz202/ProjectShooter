@@ -1979,11 +1979,11 @@ GameObject:
   - component: {fileID: 727128051385868943}
   - component: {fileID: 4890154827897457392}
   - component: {fileID: 5207693063606749811}
-  - component: {fileID: 7610030208043958040}
   - component: {fileID: 7610030208043958041}
   - component: {fileID: 7610030208043958042}
+  - component: {fileID: 7610030208043958043}
   m_Layer: 0
-  m_Name: 2H_Staff
+  m_Name: Pistol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3342,7 +3342,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4997514852744611005}
   m_Layer: 0
-  m_Name: handslot.r
+  m_Name: GunParent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4133,7 +4133,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerTransform: {fileID: 628924559}
-  _currentGun: {fileID: 7610030208043958040}
+  _gunParentTransform: {fileID: 4997514852744611005}
+  _currentGun: {fileID: 7610030208043958043}
 --- !u!4 &6254991097784506859
 Transform:
   m_ObjectHideFlags: 0
@@ -4630,20 +4631,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &7610030208043958040
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 399005256425944847}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe45935af66844c180add395b8600f59, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gunData: {fileID: 11400000, guid: dc765953eda6e4c4c98c0342995dafeb, type: 2}
-  ammunitionSpawnTransform: {fileID: 4935082843175449521}
 --- !u!54 &7610030208043958041
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4690,8 +4677,22 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.57620937, y: 2.1546998, z: 0.29234514}
-  m_Center: {x: 0.042737644, y: 0.17690425, z: -0.00000014697186}
+  m_Size: {x: 0.1599496, y: 2.1546998, z: 0.13677341}
+  m_Center: {x: 0.0027936187, y: 0.17690425, z: 0.010511409}
+--- !u!114 &7610030208043958043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 399005256425944847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe45935af66844c180add395b8600f59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gunData: {fileID: 11400000, guid: dc765953eda6e4c4c98c0342995dafeb, type: 2}
+  ammunitionSpawnTransform: {fileID: 4935082843175449521}
 --- !u!1 &7621411644712857052
 GameObject:
   m_ObjectHideFlags: 0
