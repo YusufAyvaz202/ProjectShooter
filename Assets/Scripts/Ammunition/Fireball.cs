@@ -1,5 +1,4 @@
 ﻿using Abstracts;
-using DG.Tweening;
 using Interfaces;
 using Misc;
 using Object_Pooling;
@@ -9,11 +8,11 @@ namespace Ammunition
     public class Fireball : BaseAmmunition
     {
         [Header("Settings")]
-        [SerializeField] private float _moveDuration;
+        [SerializeField] private float _moveSpeed;
         public void AttackToTarget(Vector3 targetPosition)
         {
             //TODO: Give randomness for fireball movement and animation. Change Ease to something more suitable.
-            transform.DOMove(targetPosition, _moveDuration).SetEase(Ease.InBounce);
+            _rigidbody.AddForce((transform.forward) * _moveSpeed, ForceMode.Impulse);
         }
         
         protected override void LifeTimer()

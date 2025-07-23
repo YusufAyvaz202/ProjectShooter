@@ -13,7 +13,7 @@ namespace Guns
         private void Start()
         {
             Initialize();
-            _targetTransform = GetComponentInParent<BaseEnemy>().TargetTransform;
+            _targetTransform = GetComponentInParent<BaseEnemy>()?.TargetTransform;
         }
 
         public override void Attack()
@@ -22,8 +22,7 @@ namespace Guns
             fireball.transform.position = ammunitionSpawnTransform.position;
             fireball.transform.rotation = ammunitionSpawnTransform.rotation;
 
-            // TODO:  Parameter is just the for testing it will change later.
-            fireball.AttackToTarget(_targetTransform.position);
+            fireball.AttackToTarget(Vector3.one);
         }
 
         #region Initialize & Cleanup
