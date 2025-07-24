@@ -14,8 +14,8 @@ namespace Guns
         public override void Attack()
         {
             var bullet = Pools.Instance.GetPool<Bullet>(PoolType.Bullet).Get();
-            bullet.transform.position = ammunitionSpawnTransform.position;
-            bullet.transform.rotation = ammunitionSpawnTransform.rotation;
+            bullet.transform.position = transform.position;
+            bullet.transform.rotation = transform.rotation;
         }
 
         #region Initialize & Cleanup

@@ -19,8 +19,12 @@ namespace Guns
         public override void Attack()
         {
             var fireball = Pools.Instance.GetPool<Fireball>(PoolType.Fireball).Get();
-            fireball.transform.position = ammunitionSpawnTransform.position;
-            fireball.transform.rotation = ammunitionSpawnTransform.rotation;
+            
+            Ray ray = UnityEngine.Camera.main.ScreenPointToRay(new Vector3(Screen.width/2f, Screen.height/2f, 0));
+            Vector3 targetPoint = ray.GetPoint(5f);
+            
+            fireball.transform.position = targetPoint;
+            fireball.transform.rotation = UnityEngine.Camera.main.transform.rotation;
 
             fireball.AttackToTarget(Vector3.one);
         }
