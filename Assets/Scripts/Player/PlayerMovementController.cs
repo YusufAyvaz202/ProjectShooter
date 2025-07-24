@@ -9,6 +9,7 @@ namespace Player
         private Rigidbody _rigidbody;
         
         [Header("Movement Settings")]
+        [SerializeField] private Transform _orientationTransform;
         [SerializeField] private float moveSpeed = 5f;
         [SerializeField] private float jumpSpeed = 5f;
         private bool _isGrounded = true;
@@ -17,18 +18,22 @@ namespace Player
         [Header("Rotation Settings")]
         [SerializeField] private float rotationSpeed = 720f;
         private Vector2 _rotationInput;
+        
+        [Header("Other References")]
+        private PlayerAnimationController _playerAnimationController;
 
         private void Awake()
         {
             Cursor.lockState = CursorLockMode.Locked;
             _rigidbody = GetComponent<Rigidbody>();
+            _playerAnimationController = GetComponentInChildren<PlayerAnimationController>();
             SubscribeToEvents();
         }
 
         void FixedUpdate()
         {
             MovePlayer();
-            RotationPlayer();
+            //RotationPlayer();
         }
 
         private void HandleMove(Vector2 moveInput)
@@ -41,13 +46,14 @@ namespace Player
             if (_moveInput != Vector2.zero)
             {
                 // Calculate the movement direction based on input
-                Vector3 moveDirection = transform.forward * _moveInput.y + transform.right * _moveInput.x;
+                Vector3 moveDirection = _orientationTransform.forward * _moveInput.y + _orientationTransform.right * _moveInput.x;
 
                 // Move the player
                 _rigidbody.MovePosition(transform.position + moveDirection.normalized * (Time.fixedDeltaTime * moveSpeed));
             }
-
-            EventManager.PlayerMoveAnimationParameterChanged(Mathf.Abs(_moveInput.x) + Mathf.Abs(_moveInput.y));
+            
+            Vector2 animationInput = new Vector2(Mathf.Abs(_moveInput.x), Mathf.Abs(_moveInput.y));
+            _playerAnimationController.SetMoveAnimation(animationInput.magnitude);
         }
 
         private void HandleRotation(Vector2 rotationInput)

@@ -11,10 +11,12 @@
         
         // Players Animation string
         public const string ANIMATIONS_MOVE_SPEED = "MoveSpeed";
+        public const string ANIMATIONS_ATTACK = "isAttacking";
         
         // Enemy Animation strings
         public const string ANIMATIONS_ENEMY_MOVE_SPEED = "Speed";
         public const string ANIMATIONS_ENEMY_DEAD = "Dead";
+        
         
     }
 }

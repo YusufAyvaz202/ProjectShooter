@@ -1,5 +1,4 @@
-﻿using Managers;
-using Misc;
+﻿using Misc;
 using UnityEngine;
 namespace Player
 {
@@ -8,23 +7,20 @@ namespace Player
         [Header("Animations Settings")]
         [SerializeField] private Animator _animator;
 
-        private void ChangeMoveAnimationParameter(float speed)
+        public void SetMoveAnimation(float speed)
         {
             _animator.SetFloat(Consts.ANIMATIONS_MOVE_SPEED, speed);
         }
-
-        #region Initialize & Cleanup
-
-        private void OnEnable()
+        
+        public void PlayAttackAnimation(bool isAttacking)
         {
-            EventManager.PlayerMoveAnimationParameterChanged += ChangeMoveAnimationParameter;
+            _animator.SetBool(Consts.ANIMATIONS_ATTACK, isAttacking);
+            Invoke(nameof(StopAttackAnimation), 0.5f);
         }
-
-        private void OnDisable()
+        
+        private void StopAttackAnimation()
         {
-            EventManager.PlayerMoveAnimationParameterChanged -= ChangeMoveAnimationParameter;
+            _animator.SetBool(Consts.ANIMATIONS_ATTACK, false);
         }
-
-        #endregion
     }
 }

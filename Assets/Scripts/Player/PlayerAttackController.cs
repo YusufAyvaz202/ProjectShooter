@@ -5,15 +5,20 @@ namespace Player
 {
     public class PlayerAttackController : MonoBehaviour
     {
-        [Header("Attack Settings")]
+        [Header("Attack References")]
         [SerializeField] private Transform _playerTransform;
         [SerializeField] private Transform _gunParentTransform;
         [SerializeField] private BaseGun _currentGun;
+        
+        [Header("Other References")]
+        private PlayerAnimationController _playerAnimationController;
 
         private void Attack()
         {
             if (_currentGun is null) return;
             _currentGun.Attack();
+            
+            _playerAnimationController.PlayAttackAnimation(true);
         }
 
         private void ThrowGun()
@@ -54,6 +59,8 @@ namespace Player
         {
             EventManager.OnAttackPerformed += Attack;
             EventManager.ThrowActionPerformed += ThrowGun;
+            
+            _playerAnimationController = GetComponentInChildren<PlayerAnimationController>();
         }
 
         private void OnDisable()
