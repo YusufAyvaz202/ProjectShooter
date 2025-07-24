@@ -8,25 +8,29 @@ namespace Guns
     public class FireballStick : BaseGun
     {
         [Header("Settings")]
-        private Transform _targetTransform;
+        [SerializeField] private Transform _targetTransform;
+        private Vector3 targetPoint;
+
+        [Header("References")]
+        private UnityEngine.Camera _camera;
 
         private void Start()
         {
             Initialize();
-            _targetTransform = GetComponentInParent<BaseEnemy>()?.TargetTransform;
         }
 
         public override void Attack()
         {
             var fireball = Pools.Instance.GetPool<Fireball>(PoolType.Fireball).Get();
-            
-            Ray ray = UnityEngine.Camera.main.ScreenPointToRay(new Vector3(Screen.width/2f, Screen.height/2f, 0));
-            Vector3 targetPoint = ray.GetPoint(5f);
-            
-            fireball.transform.position = targetPoint;
-            fireball.transform.rotation = UnityEngine.Camera.main.transform.rotation;
 
-            fireball.AttackToTarget(Vector3.one);
+            Ray ray = _camera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+            targetPoint = Physics.Raycast(ray, out RaycastHit hit) ? hit.point : ray.GetPoint(100);
+
+            Vector3 direction = (targetPoint - _targetTransform.position).normalized;
+
+            fireball.transform.position = _targetTransform.position;
+            fireball.transform.rotation = Quaternion.LookRotation(direction);
+            fireball.AttackToTarget();
         }
 
         #region Initialize & Cleanup
@@ -34,6 +38,8 @@ namespace Guns
         private void Initialize()
         {
             Pools.Instance.CreatePool(PoolType.Fireball, ammunitionPrefab.GetComponent<Fireball>(), initialSize);
+            
+            _camera = UnityEngine.Camera.main;
         }
 
         #endregion

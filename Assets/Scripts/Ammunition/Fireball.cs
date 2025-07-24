@@ -9,7 +9,7 @@ namespace Ammunition
     {
         [Header("Settings")]
         [SerializeField] private float _moveSpeed;
-        public void AttackToTarget(Vector3 targetPosition)
+        public void AttackToTarget()
         {
             //TODO: Give randomness for fireball movement and animation. Change Ease to something more suitable.
             _rigidbody.AddForce((transform.forward) * _moveSpeed, ForceMode.Impulse);

@@ -28,6 +28,13 @@ namespace Object_Pooling
         public T Get()
         {
             T obj = objects.Count == 0 ? Object.Instantiate(prefab, parent) : objects.Dequeue();
+            
+            //For ammunition bug.
+            if (obj.TryGetComponent(out Rigidbody rigidbody))
+            {
+                rigidbody.linearVelocity = Vector3.zero;
+            }
+            
             obj.gameObject.SetActive(true);
 
             if (obj is IPoolable poolable)
