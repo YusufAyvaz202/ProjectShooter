@@ -15,7 +15,7 @@ namespace Enemys
             if (_navMeshAgent == null || _targetTransform == null) return;
             if (_attackCooldown <= 0f)
             {
-                _fireballStick.Attack();
+                _fireballStick.EnemyAttack();
 
                 // Reset the attack cooldown
                 _attackCooldown = myEnemyData.attackCooldown;

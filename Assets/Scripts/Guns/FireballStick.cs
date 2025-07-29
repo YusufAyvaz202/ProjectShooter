@@ -32,6 +32,16 @@ namespace Guns
             fireball.AttackToTarget();
         }
 
+        public void EnemyAttack()
+        {
+            var fireball = Pools.Instance.GetPool<Fireball>(PoolType.Fireball).Get();
+            
+            fireball.transform.position = transform.position + (transform.forward * 2f + transform.up);
+            fireball.transform.rotation = transform.rotation;
+            
+            fireball.AttackToTarget();
+        }
+
         #region Initialize & Cleanup
 
         private void Initialize()
