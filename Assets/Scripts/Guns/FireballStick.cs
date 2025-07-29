@@ -8,7 +8,6 @@ namespace Guns
     public class FireballStick : BaseGun
     {
         [Header("Settings")]
-        [SerializeField] private Transform _targetTransform;
         private Vector3 targetPoint;
 
         [Header("References")]
@@ -26,9 +25,9 @@ namespace Guns
             Ray ray = _camera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
             targetPoint = Physics.Raycast(ray, out RaycastHit hit) ? hit.point : ray.GetPoint(100);
 
-            Vector3 direction = (targetPoint - _targetTransform.position).normalized;
+            Vector3 direction = (targetPoint - _combatLookAtTransform.position).normalized;
 
-            fireball.transform.position = _targetTransform.position;
+            fireball.transform.position = _combatLookAtTransform.position;
             fireball.transform.rotation = Quaternion.LookRotation(direction);
             fireball.AttackToTarget();
         }

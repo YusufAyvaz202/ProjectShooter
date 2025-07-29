@@ -13,7 +13,6 @@ namespace Managers
         // Event for player's Attack Actions.
         public static Action OnAttackPerformed;
         public static Action ThrowActionPerformed;
-        public static Action OnGunThrowPerformed;
         
         //Event for Enemy Actions.
         public static Action<BaseEnemy> OnEnemyDie;

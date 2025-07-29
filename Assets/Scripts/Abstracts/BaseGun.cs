@@ -1,5 +1,4 @@
 ﻿using Interfaces;
-using Managers;
 using ScriptableObjects;
 using UnityEngine;
 
@@ -10,28 +9,41 @@ namespace Abstracts
     {
         [Header("References")]
         [SerializeField] private GunDataSO gunData;
-        [SerializeField] protected Transform ammunitionSpawnTransform;
+        [SerializeField] protected Transform _combatLookAtTransform;
         
         [Header("Gun Settings")]
         protected GameObject ammunitionPrefab;
         private Rigidbody _rigidbody;
+        private Collider _collider;
         protected int initialSize;
-        
-        [Header("Properties")]
-        public  Rigidbody Rigidbody => _rigidbody;
 
         public abstract void Attack();
         
-        private void OnGunThrow()
+        public void ThrowedGun(Transform _playerTransform)
         {
-            if (_rigidbody.isKinematic || transform.parent != null) return;
-            
+            transform.SetParent(null);
+            transform.rotation = _playerTransform.rotation;
+            _rigidbody.isKinematic = false;
+            _rigidbody.AddForce(5f * (_playerTransform.forward + transform.up), ForceMode.Impulse);
             _rigidbody.useGravity = true;
+            
+            _collider.enabled = true;
+        }
+
+        public void TakedGun(Transform _gunParentTransform)
+        {
+            _rigidbody.isKinematic = true;
+            _rigidbody.useGravity = false;
+            transform.SetParent(_gunParentTransform);
+            transform.localPosition = Vector3.zero; 
+            transform.localRotation = Quaternion.identity;
+            
+            _collider.enabled = false; 
         }
         
-        private void OnGunThrowPerformed()
+        public void SetCombatLookAtTransform(Transform combatLookAtTransform)
         {
-            Invoke(nameof(OnGunThrow), .15f);
+            _combatLookAtTransform = combatLookAtTransform;
         }
 
         #region Initialize & Cleanup
@@ -42,12 +54,7 @@ namespace Abstracts
             initialSize = gunData.initialSize;
             
             _rigidbody = GetComponent<Rigidbody>();
-            EventManager.OnGunThrowPerformed += OnGunThrowPerformed;       
-        }
-
-        private void OnDisable()
-        {
-            EventManager.OnGunThrowPerformed -= OnGunThrowPerformed;
+            _collider = GetComponent<Collider>();
         }
 
         #endregion

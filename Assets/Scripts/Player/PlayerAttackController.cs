@@ -8,6 +8,7 @@ namespace Player
         [Header("Attack References")]
         [SerializeField] private Transform _playerTransform;
         [SerializeField] private Transform _gunParentTransform;
+        [SerializeField] private Transform _combatLookAtTransform;
         [SerializeField] private BaseGun _currentGun;
         
         [Header("Other References")]
@@ -24,15 +25,9 @@ namespace Player
         private void ThrowGun()
         {
             if (_currentGun is null) return;
-
-            //TODO: Move this function to BaseGun class
-            _currentGun.transform.SetParent(null);
-            _currentGun.transform.rotation = _playerTransform.rotation;
-            _currentGun.Rigidbody.isKinematic = false;
-            _currentGun.Rigidbody.AddForce(5f * (_playerTransform.forward + transform.up), ForceMode.Impulse);
+            
+            _currentGun.ThrowedGun(_playerTransform);
             _currentGun = null;
-
-            EventManager.OnGunThrowPerformed?.Invoke();
         }
 
         private void OnCollisionEnter(Collision other)
@@ -45,12 +40,11 @@ namespace Player
             if (gun.gameObject.TryGetComponent(out BaseGun baseGun))
             {
                 _currentGun = baseGun;
-                _currentGun.Rigidbody.isKinematic = true;
-                _currentGun.Rigidbody.useGravity = false;
-                _currentGun.transform.SetParent(_gunParentTransform);
-                _currentGun.transform.localPosition = Vector3.zero; 
-                _currentGun.transform.localRotation = Quaternion.identity; 
+                _currentGun.TakedGun(_gunParentTransform);
+                
+                _currentGun.SetCombatLookAtTransform(_combatLookAtTransform);
             }
+            
         }
 
         #region Initialize & Cleanup
