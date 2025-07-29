@@ -22,5 +22,16 @@ namespace Player
         {
             _animator.SetBool(Consts.ANIMATIONS_ATTACK, false);
         }
+        
+        public void PlayJumpAnimation()
+        {
+            _animator.SetBool(Consts.ANIMATIONS_JUMP, true);
+            Invoke(nameof(StopJumpAnimation), 0.5f);
+        }
+        
+        private void StopJumpAnimation()
+        {
+            _animator.SetBool(Consts.ANIMATIONS_JUMP, false);
+        }
     }
 }

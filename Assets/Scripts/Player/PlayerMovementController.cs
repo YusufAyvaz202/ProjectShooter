@@ -77,6 +77,7 @@ namespace Player
             {
                 _isGrounded = false;
                 _rigidbody.AddForce(new Vector3(0, jumpSpeed, 0), ForceMode.Impulse);
+                _playerAnimationController.PlayJumpAnimation();
             }
         }
 
