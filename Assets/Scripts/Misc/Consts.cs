@@ -16,6 +16,7 @@
         // Enemy Animation strings
         public const string ANIMATIONS_ENEMY_MOVE_SPEED = "Speed";
         public const string ANIMATIONS_ENEMY_DEAD = "Dead";
+        public const string ANIMATIONS_ENEMY_ATTACK = "isAttack";
         
         
     }

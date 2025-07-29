@@ -67,6 +67,7 @@ namespace Abstracts
 
             if (Vector3.Distance(transform.position, _targetTransform.position) <= _attackRange)
             {
+                PlayAttackAnimation();
                 Attack();
             }
         }
@@ -82,6 +83,18 @@ namespace Abstracts
             //TODO: Make a score System with EventManager
         }
 
+        #region Animations
+        public void PlayAttackAnimation()
+        {
+            _animator.SetBool(Consts.ANIMATIONS_ENEMY_ATTACK, true);
+            Invoke(nameof(StopAttackAnimation), _attackCooldown);
+        }
+        
+        private void StopAttackAnimation()
+        {
+            _animator.SetBool(Consts.ANIMATIONS_ENEMY_ATTACK, false);
+        }
+        
         private void Die()
         {
             _animator.SetTrigger(Consts.ANIMATIONS_ENEMY_DEAD);
@@ -92,8 +105,10 @@ namespace Abstracts
 
         private void DieAnimationEnd()
         {
-            EventManager.OnEnemyDie(this);
+            EventManager.OnEnemyDie?.Invoke(this);
         }
+        
+        #endregion
 
         #region Initialize & Cleanup
 
