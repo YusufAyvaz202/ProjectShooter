@@ -19,5 +19,6 @@
     {
         Fireball = 0,
         Bullet = 1,
+        Arrow = 2,
     }
 }
