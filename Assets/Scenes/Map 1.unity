@@ -2058,6 +2058,53 @@ Transform:
   - {fileID: 309434727}
   m_Father: {fileID: 3183603519811939448}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &899620318
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 899620320}
+  - component: {fileID: 899620321}
+  m_Layer: 0
+  m_Name: Gun Spawn Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &899620320
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 899620318}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &899620321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 899620318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e32da498b364a2eb0163c5caf8a98a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poolDatas:
+  - {fileID: 11400000, guid: e63af87d65493574cbc91cb45e1238a2, type: 2}
+  - {fileID: 11400000, guid: 04a9c91908fd15c4992c75da6f5596c4, type: 2}
 --- !u!1 &899958168
 GameObject:
   m_ObjectHideFlags: 0
@@ -10985,6 +11032,7 @@ SceneRoots:
   - {fileID: 336042669}
   - {fileID: 704215540}
   - {fileID: 706786801}
+  - {fileID: 899620320}
   - {fileID: 933148863}
   - {fileID: 1798194235}
   - {fileID: 405276551}

@@ -10,7 +10,7 @@ namespace Abstracts
         [Header("References")]
         [SerializeField] private GunDataSO gunData;
         [SerializeField] protected Transform _combatLookAtTransform;
-        
+
         [Header("Gun Settings")]
         protected GameObject ammunitionPrefab;
         private Rigidbody _rigidbody;
@@ -18,16 +18,19 @@ namespace Abstracts
         protected int initialSize;
 
         public abstract void Attack();
-        
+
         public void ThrowedGun(Transform _playerTransform)
         {
             transform.SetParent(null);
-            transform.rotation = _playerTransform.rotation;
             _rigidbody.isKinematic = false;
-            _rigidbody.AddForce(5f * (_playerTransform.forward + transform.up), ForceMode.Impulse);
             _rigidbody.useGravity = true;
-            
             _collider.enabled = true;
+            
+            if (_playerTransform != null)
+            {
+                transform.rotation = _playerTransform.rotation;
+                _rigidbody.AddForce(5f * (_playerTransform.forward + transform.up), ForceMode.Impulse);
+            }
         }
 
         public void TakedGun(Transform _gunParentTransform)
@@ -35,12 +38,12 @@ namespace Abstracts
             _rigidbody.isKinematic = true;
             _rigidbody.useGravity = false;
             transform.SetParent(_gunParentTransform);
-            transform.localPosition = Vector3.zero; 
+            transform.localPosition = Vector3.zero;
             transform.localRotation = Quaternion.identity;
-            
-            _collider.enabled = false; 
+
+            _collider.enabled = false;
         }
-        
+
         public void SetCombatLookAtTransform(Transform combatLookAtTransform)
         {
             _combatLookAtTransform = combatLookAtTransform;
@@ -52,7 +55,7 @@ namespace Abstracts
         {
             ammunitionPrefab = gunData.ammunitionPrefab;
             initialSize = gunData.initialSize;
-            
+
             _rigidbody = GetComponent<Rigidbody>();
             _collider = GetComponent<Collider>();
         }
