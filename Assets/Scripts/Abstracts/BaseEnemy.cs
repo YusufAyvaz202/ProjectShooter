@@ -1,7 +1,6 @@
 ﻿using Interfaces;
 using Managers;
 using Misc;
-using Player;
 using ScriptableObjects;
 using UnityEngine;
 using UnityEngine.AI;
@@ -15,6 +14,7 @@ namespace Abstracts
         [Header("References")]
         protected NavMeshAgent _navMeshAgent;
         protected Transform _targetTransform;
+        protected Rigidbody _rigidbody;
         private Collider _collider;
 
         [Header("Attack Settings")]
@@ -33,8 +33,6 @@ namespace Abstracts
         [SerializeField] private Animator _animator;
         [SerializeField] private float _deadAnimationDuration;
         
-        [Header("Properties")]
-        public Transform TargetTransform => _targetTransform;
 
         private void FixedUpdate()
         {
@@ -44,6 +42,11 @@ namespace Abstracts
         public void TakeDamage(float damage)
         {
             Debug.Log("Enemy took damage: " + damage + " Current Health: " + _health);
+
+            // When the enemy takes damage, stop moving and play hit animation.
+            _navMeshAgent.velocity = Vector3.zero;
+            PlayHitAnimation();
+            
             _health -= damage;
             if (_health <= 0)
             {
@@ -62,7 +65,7 @@ namespace Abstracts
             if (Vector3.Distance(transform.position, _destination) > _minMoveSensitivity)
             {
                 _navMeshAgent.SetDestination(_targetTransform.position);
-                _animator.SetFloat(Consts.ANIMATIONS_ENEMY_MOVE_SPEED, _navMeshAgent.velocity.magnitude);
+                PlayMoveAnimation(_navMeshAgent.velocity.magnitude);
             }
 
             if (Vector3.Distance(transform.position, _targetTransform.position) <= _attackRange)
@@ -84,7 +87,24 @@ namespace Abstracts
         }
 
         #region Animations
-        public void PlayAttackAnimation()
+        
+        private void PlayMoveAnimation(float speed)
+        {
+            _animator.SetFloat(Consts.ANIMATIONS_ENEMY_MOVE_SPEED, speed);
+        }
+        
+        private void PlayHitAnimation()
+        {
+            _animator.SetBool(Consts.ANIMATIONS_ENEMY_HIT, true);
+            Invoke(nameof(StopHitAnimation), 0.3f); 
+        }
+        
+        private void StopHitAnimation()
+        {
+            _animator.SetBool(Consts.ANIMATIONS_ENEMY_HIT, false);
+        }
+        
+        private void PlayAttackAnimation()
         {
             _animator.SetBool(Consts.ANIMATIONS_ENEMY_ATTACK, true);
             Invoke(nameof(StopAttackAnimation), _attackCooldown);
@@ -122,10 +142,15 @@ namespace Abstracts
 
             _collider = GetComponent<Collider>();
             _navMeshAgent = GetComponent<NavMeshAgent>();
-            _targetTransform = FindAnyObjectByType<PlayerMovementController>()?.GetComponent<Transform>();
-
+            _rigidbody = GetComponent<Rigidbody>();
+            
             _collider.enabled = true;
             _navMeshAgent.stoppingDistance = _attackRange;
+        }
+        
+        public void SetTargetTransform(Transform target)
+        {
+            _targetTransform = target;
         }
 
         #endregion

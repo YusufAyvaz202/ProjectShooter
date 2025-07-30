@@ -9,9 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b66ff6ff44e4cb4beb2199352ae2c60, type: 3}
-  m_Name: Skeleton_Mage Pool Data
+  m_Script: {fileID: 11500000, guid: 53616ebca0324d12962145363d7c2ea7, type: 3}
+  m_Name: Skeleton_Warrior
   m_EditorClassIdentifier: 
-  baseEnemyPrefab: {fileID: 4460187765921435790, guid: f5b4333b8a6362843adf529d3561ff61, type: 3}
-  enemyType: 0
-  initialSize: 5
+  health: 200
+  damage: 50
+  attackRange: 3
+  attackCooldown: 1
+  minMoveSensitivity: 1
+  enemyType: 3

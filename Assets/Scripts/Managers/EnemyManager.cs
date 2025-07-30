@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Abstracts;
 using Misc;
 using Object_Pooling;
+using Player;
 using ScriptableObjects;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -18,6 +19,7 @@ namespace Managers
         [SerializeField] private float spawnRadius = 50f;
         private readonly float spawnInterval = 1f;
         private readonly bool isSpawning = true;
+        private Transform _targetTransform;
 
         private void SpawnEnemy(EnemyType type)
         {
@@ -31,6 +33,7 @@ namespace Managers
             {
                 var enemy = pool.Get();
                 enemy.transform.position = new Vector3(spawnPosition.x, 0, spawnPosition.y);
+                enemy.SetTargetTransform(_targetTransform);
             }
         }
 
@@ -38,12 +41,17 @@ namespace Managers
         {
             while (isSpawning)
             {
-                EnemyType randomType = EnemyType.Skeleton_Mage;
+                EnemyType randomType = GetRandomEnemyType();
                 SpawnEnemy(randomType);
                 yield return new WaitForSeconds(spawnInterval);
             }
         }
-        
+        private EnemyType GetRandomEnemyType()
+        {
+            int randomIndex = Random.Range(0, enemyPoolDatas.Count);
+            return enemyPoolDatas[randomIndex].enemyType;
+        }
+
         private void DespawnEnemy(BaseEnemy enemy)
         {
             if (enemyPools.TryGetValue(enemy.enemyType, out var pool))
@@ -63,6 +71,7 @@ namespace Managers
             EventManager.OnEnemyDie += DespawnEnemy;
             
             CreateEnemyPools();
+            _targetTransform = FindAnyObjectByType<PlayerMovementController>()?.GetComponent<Transform>();
             StartCoroutine(SpawnEnemiesContinuously());
         }
         private void CreateEnemyPools()

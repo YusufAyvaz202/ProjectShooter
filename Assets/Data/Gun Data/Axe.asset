@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b66ff6ff44e4cb4beb2199352ae2c60, type: 3}
-  m_Name: Skeleton_Mage Pool Data
+  m_Script: {fileID: 11500000, guid: 985784ecfac646c5b5b3b390fe8ed453, type: 3}
+  m_Name: Axe
   m_EditorClassIdentifier: 
-  baseEnemyPrefab: {fileID: 4460187765921435790, guid: f5b4333b8a6362843adf529d3561ff61, type: 3}
-  enemyType: 0
-  initialSize: 5
+  ammunitionPrefab: {fileID: 0}
+  initialSize: 0

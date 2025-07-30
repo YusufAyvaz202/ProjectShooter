@@ -1519,6 +1519,63 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 628924560}
+--- !u!1001 &647861056
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 981965866508274372, guid: 29712fa136306d24582a189318aa5042, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 981965866508274372, guid: 29712fa136306d24582a189318aa5042, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 981965866508274372, guid: 29712fa136306d24582a189318aa5042, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 981965866508274372, guid: 29712fa136306d24582a189318aa5042, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 981965866508274372, guid: 29712fa136306d24582a189318aa5042, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 981965866508274372, guid: 29712fa136306d24582a189318aa5042, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 981965866508274372, guid: 29712fa136306d24582a189318aa5042, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 981965866508274372, guid: 29712fa136306d24582a189318aa5042, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 981965866508274372, guid: 29712fa136306d24582a189318aa5042, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 981965866508274372, guid: 29712fa136306d24582a189318aa5042, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8224423413730041283, guid: 29712fa136306d24582a189318aa5042, type: 3}
+      propertyPath: m_Name
+      value: Skeleton_Warrior
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 29712fa136306d24582a189318aa5042, type: 3}
 --- !u!1 &661812193
 GameObject:
   m_ObjectHideFlags: 0
@@ -1729,7 +1786,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &706786801
 Transform:
   m_ObjectHideFlags: 0
@@ -1759,6 +1816,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPoolDatas:
   - {fileID: 11400000, guid: a1563149d852259439a1c2a129fe9dfb, type: 2}
+  - {fileID: 11400000, guid: 4cbfaf3d816597d45baa94709113d51f, type: 2}
   spawnRadius: 50
 --- !u!1 &753379760
 GameObject:
@@ -10920,3 +10978,4 @@ SceneRoots:
   - {fileID: 3183603519811939448}
   - {fileID: 153036176}
   - {fileID: 1134207681}
+  - {fileID: 647861056}
