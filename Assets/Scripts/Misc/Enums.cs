@@ -20,4 +20,11 @@
         Bullet = 1,
         Arrow = 2,
     }
+    
+    public enum CollectibleType
+    {
+        Health = 0,
+        Ammo = 1,
+        Gold = 2,
+    }
 }

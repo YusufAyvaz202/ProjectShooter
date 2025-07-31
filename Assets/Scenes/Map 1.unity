@@ -1729,7 +1729,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &706786801
 Transform:
   m_ObjectHideFlags: 0
@@ -2743,6 +2743,52 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1439932109}
   m_Mesh: {fileID: 1639819806447845473, guid: 62032a06c06874e4e93c7a7156e82f60, type: 3}
+--- !u!1 &1550194142
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1550194144}
+  - component: {fileID: 1550194145}
+  m_Layer: 0
+  m_Name: Collectible Spawn Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1550194144
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1550194142}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1550194145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1550194142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5ba28c29166469b9be3c0e543cdfcfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poolDatas:
+  - {fileID: 11400000, guid: ab017d3cfe8858d44a36fb79738c5193, type: 2}
 --- !u!1 &1658749817
 GameObject:
   m_ObjectHideFlags: 0
@@ -8009,11 +8055,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3183603519811939448}
+  - component: {fileID: 8695042045496311201}
   - component: {fileID: 2019105876303473479}
   - component: {fileID: 8695042045496311199}
   - component: {fileID: 6212221766838400195}
   - component: {fileID: 8695042045496311200}
-  - component: {fileID: 8695042045496311201}
+  - component: {fileID: 8695042045496311202}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -10896,6 +10943,18 @@ CapsuleCollider:
   m_Height: 1.9449432
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0.0037358105}
+--- !u!114 &8695042045496311202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2838884202804590274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cd27b43a1904c8c8a8d43e477737117, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &8811917732798424892
 Transform:
   m_ObjectHideFlags: 0
@@ -11033,6 +11092,7 @@ SceneRoots:
   - {fileID: 704215540}
   - {fileID: 706786801}
   - {fileID: 899620320}
+  - {fileID: 1550194144}
   - {fileID: 933148863}
   - {fileID: 1798194235}
   - {fileID: 405276551}

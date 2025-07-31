@@ -16,6 +16,11 @@ namespace Player
             }
         }
 
+        public void SetHealth(float health)
+        {
+            _health += health;
+        }
+
         private void Die()
         {
             Debug.Log("Player has died.");
