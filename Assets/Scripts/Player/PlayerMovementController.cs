@@ -49,7 +49,7 @@ namespace Player
                 Vector3 moveDirection = _orientationTransform.forward * _moveInput.y + _orientationTransform.right * _moveInput.x;
 
                 // Move the player
-                _rigidbody.MovePosition(transform.position + moveDirection.normalized * (Time.fixedDeltaTime * moveSpeed));
+                _rigidbody.MovePosition(_rigidbody.position + moveDirection.normalized * (Time.fixedDeltaTime * moveSpeed));
             }
             
             Vector2 animationInput = new Vector2(Mathf.Abs(_moveInput.x), Mathf.Abs(_moveInput.y));

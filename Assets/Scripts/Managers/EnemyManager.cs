@@ -17,7 +17,7 @@ namespace Managers
 
         [Header("Spawn Settings")]
         [SerializeField] private float spawnRadius = 50f;
-        private readonly float spawnInterval = 1f;
+        private readonly float spawnInterval = 5f;
         private readonly bool isSpawning = true;
         private Transform _targetTransform;
 

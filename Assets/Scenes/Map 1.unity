@@ -2420,7 +2420,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Composition:
-    ScreenPosition: {x: 0, y: 0.0016000271}
+    ScreenPosition: {x: 0, y: 0}
     DeadZone:
       Enabled: 0
       Size: {x: 0.2, y: 0.2}
@@ -2550,7 +2550,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330789922}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.09066705, y: 0.18829969, z: 0.017460877, w: 0.9777617}
+  m_LocalRotation: {x: -0.090018995, y: 0.1883112, z: 0.01733607, w: 0.9778215}
   m_LocalPosition: {x: 0, y: 1, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -17972,9 +17972,9 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!4 &2033873267292243752
 Transform:
   m_ObjectHideFlags: 0
@@ -20469,7 +20469,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5255629978317860507}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.09066706, y: 0.18829972, z: 0.017460883, w: 0.9777617}
+  m_LocalRotation: {x: -0.09001899, y: 0.1883112, z: 0.017336072, w: 0.9778215}
   m_LocalPosition: {x: 0, y: 1, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -22306,7 +22306,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2838884202804590274}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: cef329f014fd497468da40d0715d4c74, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

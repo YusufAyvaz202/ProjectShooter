@@ -1,4 +1,5 @@
-﻿using Misc;
+﻿using System;
+using Misc;
 using UnityEngine;
 namespace Player
 {
@@ -32,6 +33,11 @@ namespace Player
         private void StopJumpAnimation()
         {
             _animator.SetBool(Consts.ANIMATIONS_JUMP, false);
+        }
+
+        private void OnEnable()
+        {
+            _animator.applyRootMotion = true;
         }
     }
 }
