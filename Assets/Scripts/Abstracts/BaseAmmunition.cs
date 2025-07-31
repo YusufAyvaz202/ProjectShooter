@@ -8,15 +8,19 @@ namespace Abstracts
     {
         [Header("Bullet Settings")]
         [SerializeField] private AmmunitionDataSO ammunitionData;
+
         protected float speed;
         protected float damage;
         protected float lifeTime;
         protected Rigidbody _rigidbody;
 
         protected abstract void LifeTimer();
-        
+
         public void Spawn()
         {
+            //For ammunition bug.
+            _rigidbody.linearVelocity = Vector3.zero;
+            
             Invoke(nameof(LifeTimer), lifeTime);
         }
         public void Despawn()
@@ -31,11 +35,11 @@ namespace Abstracts
             speed = ammunitionData.speed;
             damage = ammunitionData.damage;
             lifeTime = ammunitionData.lifeTime;
-            
+
             _rigidbody = GetComponent<Rigidbody>();
         }
 
         #endregion
-        
+
     }
 }
