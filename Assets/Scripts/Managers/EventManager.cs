@@ -7,7 +7,6 @@ namespace Managers
     {
         // Event for player's move and rotation input.
         public static Action<Vector2> OnMovePerformed;
-        public static Action<Vector2> OnLookPerformed;
         public static Action OnJumpPerformed;
 
         // Event for player's Attack Actions.

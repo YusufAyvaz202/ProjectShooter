@@ -17,8 +17,7 @@
     public enum PoolType
     {
         Fireball = 0,
-        Bullet = 1,
-        Arrow = 2,
+        Arrow = 1,
     }
     
     public enum CollectibleType

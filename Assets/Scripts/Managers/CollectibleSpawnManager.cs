@@ -20,6 +20,7 @@ namespace Managers
         [Header("Spawn Settings")]
         private readonly float spawnInterval = 3f;
         private readonly bool isSpawning = true;
+        private readonly float _spawnRadius = 50f;
         private Coroutine _spawnCoroutine;
 
         private void Awake()
@@ -50,7 +51,7 @@ namespace Managers
             if (pool == null) return;
             BaseCollectible baseCollectible = pool.Get();
 
-            Vector3 spawnPosition = Random.insideUnitSphere * 50f;
+            Vector3 spawnPosition = Random.insideUnitSphere * _spawnRadius;
             spawnPosition.y = transform.position.y;
 
             baseCollectible.transform.position = spawnPosition;

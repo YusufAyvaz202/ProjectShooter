@@ -23,7 +23,7 @@ namespace Guns
             var fireball = Pools.Instance.GetPool<Fireball>(PoolType.Fireball).Get();
 
             Ray ray = _camera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
-            targetPoint = Physics.Raycast(ray, out RaycastHit hit) ? hit.point : ray.GetPoint(100);
+            targetPoint = Physics.Raycast(ray, out RaycastHit hit) ? hit.point : ray.GetPoint(_maxDistance);
 
             Vector3 direction = (targetPoint - _combatLookAtTransform.position).normalized;
 

@@ -14,7 +14,6 @@ namespace Enemys
             if (_attackCooldown <= 0f)
             {
                 _axe.Attack();
-                //_rigidbody.AddForce((transform.forward + transform.up) * 2, ForceMode.Impulse);
                 // Reset the attack cooldown
                 _attackCooldown = myEnemyData.attackCooldown;
             }

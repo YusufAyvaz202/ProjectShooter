@@ -1,5 +1,4 @@
-﻿using System;
-using Misc;
+﻿using Misc;
 using UnityEngine;
 namespace Player
 {
@@ -7,6 +6,7 @@ namespace Player
     {
         [Header("Animations Settings")]
         [SerializeField] private Animator _animator;
+        private readonly float _defaultAnimationDuration = 0.5f;
 
         public void SetMoveAnimation(float speed)
         {
@@ -16,7 +16,7 @@ namespace Player
         public void PlayAttackAnimation(bool isAttacking)
         {
             _animator.SetBool(Consts.ANIMATIONS_ATTACK, isAttacking);
-            Invoke(nameof(StopAttackAnimation), 0.5f);
+            Invoke(nameof(StopAttackAnimation), _defaultAnimationDuration);
         }
         
         private void StopAttackAnimation()
@@ -27,7 +27,7 @@ namespace Player
         public void PlayJumpAnimation()
         {
             _animator.SetBool(Consts.ANIMATIONS_JUMP, true);
-            Invoke(nameof(StopJumpAnimation), 0.5f);
+            Invoke(nameof(StopJumpAnimation), _defaultAnimationDuration);
         }
         
         private void StopJumpAnimation()
@@ -37,7 +37,7 @@ namespace Player
 
         private void OnEnable()
         {
-            _animator.applyRootMotion = true;
+            _animator.applyRootMotion = false;
         }
     }
 }

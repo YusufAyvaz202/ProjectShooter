@@ -16,6 +16,7 @@ namespace Managers
 
         [Header("Spawn Settings")]
         private readonly float spawnInterval = 60f;
+        private readonly float spawnRadius = 50f;
         private readonly bool isSpawning = true;
         private Coroutine _spawnCoroutine;
 
@@ -34,7 +35,7 @@ namespace Managers
             if (pool == null) return;
             BaseGun baseGun = pool.Get();
 
-            Vector3 spawnPosition = Random.insideUnitSphere * 50f;
+            Vector3 spawnPosition = Random.insideUnitSphere * spawnRadius;
             spawnPosition.y = transform.position.y;
 
             baseGun.transform.position = spawnPosition;
@@ -44,6 +45,7 @@ namespace Managers
         // TODO: Call this method when appropriate, but if plater picks up the gun, it should not be despawned
         private void DespawnGun(BaseGun gun, GunType gunType)
         {
+
             if (_gunPools.TryGetValue(gunType, out var pool))
             {
                 pool.ReturnToPool(gun);

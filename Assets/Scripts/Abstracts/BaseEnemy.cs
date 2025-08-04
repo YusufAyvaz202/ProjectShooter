@@ -14,7 +14,6 @@ namespace Abstracts
         [Header("References")]
         protected NavMeshAgent _navMeshAgent;
         protected Transform _targetTransform;
-        protected Rigidbody _rigidbody;
         private Collider _collider;
 
         [Header("Attack Settings")]
@@ -142,7 +141,6 @@ namespace Abstracts
 
             _collider = GetComponent<Collider>();
             _navMeshAgent = GetComponent<NavMeshAgent>();
-            _rigidbody = GetComponent<Rigidbody>();
             
             _collider.enabled = true;
             _navMeshAgent.stoppingDistance = _attackRange;

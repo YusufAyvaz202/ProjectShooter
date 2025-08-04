@@ -7,6 +7,7 @@ namespace Guns
     {
         [Header("Axe Properties")]
         private bool _isAttacking;
+        private readonly float _damage = 25f;
 
         public override void Attack()
         {
@@ -18,9 +19,9 @@ namespace Guns
             if (!_isAttacking) return;
             if (other.gameObject.TryGetComponent(out IAttackable attackable))
             {
-                attackable.TakeDamage(25);
+                attackable.TakeDamage(_damage);
                 // TODO: can be added some visual or sound effects here
-                Debug.Log($"Axe hit {other.name} for {25} damage.");
+                Debug.Log($"Axe hit {other.name} for {_damage} damage.");
             }
             else
             {

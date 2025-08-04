@@ -16,20 +16,26 @@ namespace Abstracts
         private Rigidbody _rigidbody;
         private Collider _collider;
         protected int initialSize;
+        protected readonly float _maxDistance = 100f;
+        private bool _isTaken;
+        
+        [Header("Properties")]
+        public bool IsTaken => _isTaken;
 
         public abstract void Attack();
 
-        public void ThrowedGun(Transform _playerTransform)
+        public void ThrowedGun(Transform _playerTransform,float ThrowForce = 5f)
         {
             transform.SetParent(null);
             _rigidbody.isKinematic = false;
             _rigidbody.useGravity = true;
             _collider.enabled = true;
+            _isTaken = false;
             
             if (_playerTransform != null)
             {
                 transform.rotation = _playerTransform.rotation;
-                _rigidbody.AddForce(5f * (_playerTransform.forward + transform.up), ForceMode.Impulse);
+                _rigidbody.AddForce(ThrowForce * (_playerTransform.forward + transform.up), ForceMode.Impulse);
             }
         }
 
@@ -40,6 +46,7 @@ namespace Abstracts
             transform.SetParent(_gunParentTransform);
             transform.localPosition = Vector3.zero;
             transform.localRotation = Quaternion.identity;
+            _isTaken = true;
 
             _collider.enabled = false;
         }

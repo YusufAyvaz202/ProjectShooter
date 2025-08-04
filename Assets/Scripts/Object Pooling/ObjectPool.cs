@@ -7,7 +7,6 @@ namespace Object_Pooling
     {
         [Header("Object Pool Settings")]
         private readonly Queue<T> objects = new Queue<T>();
-
         private readonly Transform parent;
         private readonly T prefab;
         private int _capacityLimit = 30;
@@ -33,7 +32,11 @@ namespace Object_Pooling
             
             if (objects.Count == 0)
             {
-                if (_capacityLimit <= 0) return null;
+                if (_capacityLimit <= 0)
+                {
+                    Debug.LogWarning("Object pool capacity limit reached. Cannot instantiate more objects.");
+                    return null;
+                }
                 obj = Object.Instantiate(prefab, parent);
                 _capacityLimit--;
             }
