@@ -7,8 +7,10 @@ namespace Object_Pooling
     {
         [Header("Object Pool Settings")]
         private readonly Queue<T> objects = new Queue<T>();
+
         private readonly Transform parent;
         private readonly T prefab;
+        private int _capacityLimit = 30;
 
         // Initialize pool any type.
         public ObjectPool(T prefab, int initialSize, Transform parent = null)
@@ -27,10 +29,20 @@ namespace Object_Pooling
         // Get object from pool. if pool is empty create another Instantiate.
         public T Get()
         {
-            T obj = objects.Count == 0 ? Object.Instantiate(prefab, parent) : objects.Dequeue();
+            T obj;
             
-            
-            
+            if (objects.Count == 0)
+            {
+                if (_capacityLimit <= 0) return null;
+                obj = Object.Instantiate(prefab, parent);
+                _capacityLimit--;
+            }
+            else
+            {
+                obj = objects.Dequeue();
+            }
+
+
             obj.gameObject.SetActive(true);
 
             if (obj is IPoolable poolable)
