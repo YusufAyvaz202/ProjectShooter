@@ -12,7 +12,6 @@ namespace Controllers
 
         [Header("Action References")]
         private InputAction _moveAction;
-        private InputAction _lookAction;
         private InputAction _jumpAction;
         private InputAction _attackAction;
         private InputAction _throwAction;
@@ -26,12 +25,6 @@ namespace Controllers
             EventManager.OnMovePerformed(moveInput);
         }
 
-        private void OnLookPerformed(InputAction.CallbackContext callbackContext)
-        {
-            // Read the look input from the callback context and pass it to the event manager
-            Vector2 lookInput = callbackContext.ReadValue<Vector2>();
-            EventManager.OnLookPerformed(lookInput);
-        }
 
         private void OnJumpPerformed(InputAction.CallbackContext callbackContext)
         {
@@ -63,9 +56,6 @@ namespace Controllers
             _moveAction.performed += OnMovePerformed;
             _moveAction.canceled += OnMovePerformed;
 
-            _lookAction.started += OnLookPerformed;
-            _lookAction.performed += OnLookPerformed;
-            _lookAction.canceled += OnLookPerformed;
 
             _jumpAction.started += OnJumpPerformed;
             _jumpAction.performed += OnJumpPerformed;
@@ -84,9 +74,6 @@ namespace Controllers
             _moveAction.performed -= OnMovePerformed;
             _moveAction.canceled -= OnMovePerformed;
 
-            _lookAction.started -= OnLookPerformed;
-            _lookAction.performed -= OnLookPerformed;
-            _lookAction.canceled -= OnLookPerformed;
 
             _jumpAction.started -= OnJumpPerformed;
             _jumpAction.performed -= OnJumpPerformed;
@@ -107,7 +94,6 @@ namespace Controllers
 
                 // Find the actions by their names defined in Consts.cs
                 _moveAction = inputActions.FindAction(Consts.MOVE_ACTION, throwIfNotFound: true);
-                _lookAction = inputActions.FindAction(Consts.LOOK_ACTION, throwIfNotFound: true);
                 _jumpAction = inputActions.FindAction(Consts.JUMP_ACTION, throwIfNotFound: true);
                 _attackAction = inputActions.FindAction(Consts.ATTACK_ACTION, throwIfNotFound: true);
                 _throwAction = inputActions.FindAction(Consts.THROW_ACTION, throwIfNotFound: true);

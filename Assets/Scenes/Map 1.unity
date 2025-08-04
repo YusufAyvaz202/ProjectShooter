@@ -4317,7 +4317,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &706786801
 Transform:
   m_ObjectHideFlags: 0
@@ -8049,6 +8049,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   poolDatas:
   - {fileID: 11400000, guid: ab017d3cfe8858d44a36fb79738c5193, type: 2}
+  - {fileID: 11400000, guid: 7616b7761804fd947a6588747370679c, type: 2}
 --- !u!1 &1560818546
 GameObject:
   m_ObjectHideFlags: 0
@@ -22283,9 +22284,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _orientationTransform: {fileID: 875044903}
-  moveSpeed: 10
+  _currentSpeed: 5
   jumpSpeed: 5
-  rotationSpeed: 12
 --- !u!114 &8695042045496311200
 MonoBehaviour:
   m_ObjectHideFlags: 0

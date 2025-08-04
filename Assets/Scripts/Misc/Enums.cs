@@ -26,5 +26,6 @@
         Health = 0,
         Ammo = 1,
         Gold = 2,
+        Speed = 3,
     }
 }

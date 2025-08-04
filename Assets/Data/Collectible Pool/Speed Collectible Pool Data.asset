@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c1957cbb4f17442d85586a83cf6eba77, type: 3}
-  m_Name: Heal Collectible Pool Data
+  m_Name: Speed Collectible Pool Data
   m_EditorClassIdentifier: 
-  baseCollectiblePrefab: {fileID: 8094294927535010757, guid: 2fbdac276dc098346b2c9d1873c2c3a9, type: 3}
-  collectibleType: 0
+  baseCollectiblePrefab: {fileID: 8094294927535010757, guid: 4667eb33e1a8a0f4296e68c040832fc1, type: 3}
+  collectibleType: 3
   initialSize: 3

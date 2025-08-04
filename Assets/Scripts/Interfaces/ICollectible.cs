@@ -1,8 +1,9 @@
-﻿using Player;
+﻿using System;
+using Misc;
 namespace Interfaces
 {
     public interface ICollectible
     {
-        void Collect(PlayerInteractionManager playerInteractionManager);
+        void Collect(Action<CollectibleType> onCollect);
     }
 }

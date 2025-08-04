@@ -18,7 +18,7 @@ namespace Managers
         private Dictionary<CollectibleType, ObjectPool<BaseCollectible>> _collectiblePools;
 
         [Header("Spawn Settings")]
-        private readonly float spawnInterval = 30f;
+        private readonly float spawnInterval = 3f;
         private readonly bool isSpawning = true;
         private Coroutine _spawnCoroutine;
 

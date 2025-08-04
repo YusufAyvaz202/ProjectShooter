@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 141525158851673083}
   - component: {fileID: 8094294927535010757}
   m_Layer: 0
-  m_Name: Heal Collectible
+  m_Name: Speed Collectible
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -121,4 +121,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ce35ce0026d4b99bdcf709d4c65af4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _collectibleType: 0
+  _collectibleType: 3
